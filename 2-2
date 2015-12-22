@@ -1,0 +1,40 @@
+Program palachnin22;
+//uses crt;
+const nmax=20;
+Var
+a:array[1..nmax,1..nmax] of integer;
+n,m,i,j,k:byte;
+begin
+//clrscr;
+randomize;
+repeat
+write('количество строк=');
+readln(m);
+until m in [1..nmax];
+repeat
+write('количество столбцов=');
+readln(n);
+until n in [1..nmax];
+writeln('Введите ',n*m,' эллементов матрицы:');
+writeln('Исходная матрица:');
+for i:=1 to m do
+ begin
+   for j:=1 to n do
+    begin
+     a[i,j]:=random(10)-4;
+     write(a[i,j]:4);
+    end;
+   writeln;
+ end;
+writeln;
+//подсчёт строк без нолей
+k:=m;
+for i:=1 to m do
+for j:=1 to n do
+if a[i,j]=0 then
+ begin
+  k:=k-1;
+  break;
+ end;
+writeln('Количество строк без нолей=',k);
+end.
