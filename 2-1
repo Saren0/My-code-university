@@ -1,0 +1,80 @@
+Program palachanin21;
+
+const
+nmax=4;{
+m:array[1..n,1..n] of real=((1.2,2.5,3.5,4.0),
+                            (3.5,2.3,4.8,6.0),   //проверка
+                            (5.2,6.2,2.6,4.9),
+                            (5.3,4.8,9.3,2.8));}
+Var
+n,m:byte;
+ i,j,imn,k:integer;
+ a:array[1..nmax,1..nmax] of real;
+ s:real;
+begin
+
+randomize;
+repeat
+writeln;
+write('количество строк=');
+readln(m);
+until m in [1..nmax];
+repeat
+write('количество столбцов=');
+readln(n);
+until n in [1..nmax];
+writeln('Введите ',n*m,' эллементов матрицы:');
+writeln('Исходная матрица:');
+for i:=1 to m do
+ begin
+   for j:=1 to n do
+    begin
+     a[i,j]:=random(10)-4;
+     write(a[i,j]:4);
+    end;
+   writeln;
+ end;
+writeln;
+
+{a:=m;
+writeln('Исходная матрица');
+for i:=1 to n do
+ begin                           //проверка
+  for j:=1 to n do
+  write(a[i,j]:6:1);
+  writeln;
+ end;}
+k:=0;
+for j:=1 to n do
+ begin
+  imn:=1;
+  for i:=1 to n do
+  if a[i,j]<a[imn,j] then imn:=i;
+  if imn=j then inc(k);
+ end;
+if k<>n then write('Минимальные элементы столбцов не все на главной диагонали')
+else
+ begin
+  writeln('Все минимальные элементы столбцов главной диагонали');
+  s:=0;
+  k:=0;
+  for i:=2 to n do
+  for j:=1 to i-1 do
+   begin
+    s:=s+a[i,j];
+    k:=k+1;
+   end;
+  s:=s/k;
+  writeln('Среднее арифметическое элементов ниже главной диагонали=',s:0:1);
+  writeln('Измененная матрица');
+  for i:=1 to n do
+   begin
+    for j:=1 to n do
+     begin
+      if j>i then a[i,j]:=a[i,j]+s;
+      write(a[i,j]:6:1);
+     end;
+    writeln;
+   end;
+ end;
+end.
