@@ -1,0 +1,175 @@
+unit stringX;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, StdCtrls, ExtCtrls, Buttons;
+
+type
+  TForm1 = class(TForm)
+    Memo: TMemo;
+    CB: TComboBox;
+    LB: TListBox;
+    RG: TRadioGroup;
+    L1: TLabel;
+    L2: TLabel;
+    L3: TLabel;
+    Bbtn1: TBitBtn;
+    Bbtn2: TBitBtn;
+    Bbtn3: TBitBtn;
+    SText: TStaticText;
+    OpenDialog: TOpenDialog;
+    SaveDialog: TSaveDialog;
+    procedure CBChange(Sender: TObject);
+    procedure RGClick(Sender: TObject);
+    procedure Bbtn3Click(Sender: TObject);
+    procedure Bbtn2Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form1: TForm1;
+
+implementation
+
+{$R *.dfm}
+
+procedure TForm1.CBChange(Sender: TObject);
+begin
+   if(CB.ItemIndex = 0) then
+    SText.Caption:= 'Äàí òåêñò. Âñå ñëîâà, äëèíà êîòîðûõ áîëüøå â 2 ðàçà äëèíû ñëîâà ìèíèìàëüíîé äëèíû, çàìåíèòü íà ñëîâî ìèíèìàëüíîé äëèíû.';
+   if(CB.ItemIndex = 1) then
+    SText.Caption:= 'Äàí òåêñò. Ïåðâîå ïî ïîðÿäêó ñàìîå êîðîòêîå ñëîâî òåêñòà çàìåíèòü íà ïåðâîå ïî ïîðÿäêó ñàìîå äëèííîå ñëîâî, åñëè èõ äëèíû íå ñîâïàäàþò.';
+
+end;
+
+procedure TForm1.RGClick(Sender: TObject);
+var
+  s,min,s1,t1:string;
+  i,kol,t,d,j :integer;
+  d2,k: Integer;
+
+  St1:string;
+  n,ns,ds,d_max:integer;
+  l1,l2: integer;
+begin
+  if(RG.ItemIndex = 0) then
+  begin
+  LB.Clear;
+  s:= Memo.Text;
+    s:=s+' ';  min:=s; s1:='';
+  For i:=1 to length(s) do
+    if s[i]<>' ' then
+      s1:=s1+s[i]
+    else
+      begin
+        if (length(s1)<length(min)) and (length(s1)<>0) then
+          min:=s1;
+        s1:='';
+      end;  //íàøëè ñëîâî ìèíèìàëüíîé äëèíû
+d:=length(min);//äëèíà ìèíèàëüíîãî ñëîâà
+t:=2*d;//äëèíà ñëîâ, êîòîðûå ìåíÿåì
+i:=1;
+while i<length(s) do
+if (s[i]<>' ')and(s[i-1]=' ') then //íà÷àëî ñëîâà
+ begin
+  j:=i;
+  k:=0; //äëèíà ñëîâà
+  while(j<length(s))and(s[j]<>' ') do//ïîêà íå êîíåö è íå ïðîáåë
+   begin
+    j:=j+1;//èäåì âïåðåä
+    k:=k+1;///ñ÷èòàåì áóêâû
+   end;
+  if k=t then //åñëè äëèíà ïîäõîäèò
+   begin
+    Delete (s,i,k);//óäàëèì ñëîâî
+    Insert(min,s,i);//âñòàâèì ìèí
+    i:=i+d;//ïåðåøàãíåì ÷åðåç ìèí
+   end
+  else i:=i+k;//èíà÷å ïåðåøàãíåì ÷åðåç ñëîâî
+ end
+else i:=i+1;//ïðîïóñòèì ïðîáåëû
+s:=trim(s);//óáåðåì ïðîáåëû â íà÷àëå è êîíöå
+LB.Items.Add(s);
+end;
+  ///////////////////////////////////////////
+  if(RG.ItemIndex = 1) then
+  begin
+  LB.Clear;
+  s:=Memo.Text;
+    s:=s+' ';  min:=s; s1:='';
+  For i:=1 to length(s) do
+    if s[i]<>' ' then
+      s1:=s1+s[i]
+    else
+      begin
+        if (length(s1)<length(min)) and (length(s1)<>0) then
+          min:=s1;
+        s1:='';
+      end;   //íàøëè ñëîâî ìèíèìàëüíîé äëèííû
+
+  d:=Length(s);
+  ns:=1;
+  d_max:=0;
+ For i:=1 to d do
+ If ((s[i]=' ') or (s[i]='.')) then
+   begin
+      ds:=i-ns;
+         If ds>d_max then
+         begin
+            d_max:=ds;
+            st1:=Copy(s,ns,ds);
+         end;
+         ns:=i+1;
+   end; //íàøëè ñëîâî ìàêñèìàëüíîé äëèííû
+
+  l1:=length(min);
+  l2:=length(st1);
+  if l1<>l2 then    //ñðàâíåíèÿ äëèíí ñëîâ
+    d2:=Length(min);
+ Repeat
+   k:=Pos(min,s);
+    If k<>0 then
+    begin
+      Delete (s,k,d2);
+      Insert(st1,s,k);
+    end;
+  Until k=0;       //çàìåíà ìèíèìàëüíîãî íà ìàêñèìàëüíîå
+  LB.Items.Add(s);
+  end;
+end;
+
+procedure TForm1.Bbtn3Click(Sender: TObject);
+var
+  f : TextFile;
+begin
+  SaveDialog.Filter:= 'Òåêñòîâûå ôàéëû|*.txt|';
+  if SaveDialog.Execute then
+  begin
+    AssignFile (f, SaveDialog.Filename);
+    Rewrite(f);
+    writeln (f, Memo.Text);
+    CloseFile (f);
+  end;
+end;
+
+procedure TForm1.Bbtn2Click(Sender: TObject);
+var
+  f : TextFile;
+  n : string;
+begin
+  OpenDialog.Filter:= 'Òåêñòîâûå ôàéëû|*.txt|';
+  if OpenDialog.Execute and FileExists(OpenDialog.Filename) then
+  begin
+    AssignFile (f, OpenDialog.Filename);
+    Reset(f);
+    readln(f, n);
+    Memo.Text:= n;
+    CloseFile (f);
+  end;
+end;
+end.
