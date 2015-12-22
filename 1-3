@@ -1,0 +1,33 @@
+Program palachnin13;
+Var
+ A: array [1..100] of Integer;
+ B: array [1..100] of Integer;
+ N: byte;
+ k, i, j: integer;
+ min: integer;
+ i_min: integer;
+ begin
+Write ('Введите размерность массива N=');
+ReadLn (n);
+WriteLn ('Введите элементы массива');
+For i:=1 to n do
+    begin
+      Write ('A[',i,']=');
+      ReadLn (A[i]);
+end;
+For i:=1 to n do
+begin
+	min:=A[i];
+	i_min:=i;
+	For j:=1 to n do
+		If A[j]<min then
+		begin
+			min:=A[j];
+			i_min:=j;
+		end;
+	B[i]:=min;
+	A[i_min]:=99;
+end;
+   for i:=1 to n do
+   writeln(B[i]);
+end.
