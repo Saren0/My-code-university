@@ -1,0 +1,25 @@
+Program palachnin12;
+Var
+
+ A: array [1..100] of Integer;
+ f: boolean;
+ i: integer;
+
+ begin
+ 
+  randomize;
+  for i := 1 to 100 do
+  begin
+    A[i] := random(50) - 5;
+    write(A[i]:5);//исходный
+    if A[i] < -3 then f := true
+  end;
+  writeln; writeln;
+  for i := 1 to 100 do
+  begin
+    if not(f) then A[i] := A[i] * 2  else
+    if A[i] > 0 then A[i] := sqr(A[i]);
+    write(A[i]:5) //полученный
+  end;
+  readln
+end.
