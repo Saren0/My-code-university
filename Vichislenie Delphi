@@ -1,0 +1,251 @@
+unit Unit1;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, Grids, Buttons, StdCtrls, ExtCtrls, jpeg;
+
+type
+  TForm1 = class(TForm)
+    Label1: TLabel;
+    Label2: TLabel;
+    Label3: TLabel;
+    Edit1: TEdit;
+    Edit2: TEdit;
+    Edit3: TEdit;
+    Button1: TButton;
+    Button2: TButton;
+    BitBtn1: TBitBtn;
+    SG: TStringGrid;
+    ComboBox1: TComboBox;
+    Panel1: TPanel;
+    procedure Button1Click(Sender: TObject);
+    procedure Button2Click(Sender: TObject);
+    procedure Edit2KeyPress(Sender: TObject; var Key: Char);
+    procedure Edit3KeyPress(Sender: TObject; var Key: Char);
+    procedure Edit1KeyPress(Sender: TObject; var Key: Char);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form1: TForm1;
+
+implementation
+
+uses Unit2;
+
+{$R *.dfm}
+
+procedure TForm1.Button1Click(Sender: TObject);
+var a,b,h,x,y1,y2,y3 : real; n,i,z : integer;
+ s,s1,s2,s3 : string;
+begin
+
+
+  /// Îøèáêè
+
+   if edit1.text='' then begin
+     messageDlg('Ââåäèòå À!', mterror,[mbOK],0);
+     edit1.SetFocus;
+     exit;
+   end;
+
+   if edit2.text='' then begin
+     messageDlg('Ââåäèòå B!', mterror,[mbOK],0);
+     edit1.SetFocus;
+     exit;
+   end;
+
+   if edit3.text='' then begin
+     messageDlg('Ââåäèòå N!', mterror,[mbOK],0);
+     edit1.SetFocus;
+     exit;
+   end;
+
+   if combobox1.Text='' then begin
+     messageDlg('Âûáåðèòå êîìïîíåíò èç ñïèñêà!', mterror,[mbOK],0);
+     edit1.SetFocus;
+     exit;
+   end;
+
+    ///Ïðîãðàììà
+  
+if combobox1.Text='SG' then             ////SG
+   begin
+     a:=strtofloat(edit1.Text);
+     b:=strtofloat(edit2.Text);
+     n:=strtoint(edit3.Text);
+
+   if b<=a then begin
+     messageDlg('B  äîëæíî áûòü áîëüøå À!', mterror,[mbOK],0);
+     edit1.SetFocus;
+     exit;
+   end;
+
+   if n<1 then begin
+     messageDlg('N äîëæíî áûòü áîëüøå 1!', mterror,[mbOK],0);
+     edit1.SetFocus;
+     exit;
+   end;
+
+     sg.cells[0,0]:='¹';
+     sg.cells[1,0]:='x';
+     sg.cells[2,0]:='y1';
+     sg.cells[3,0]:='y2';
+     sg.cells[4,0]:='y3';
+     h:=(b-a)/n;
+     x:=a;
+     for i:=1 to n+1 do
+       begin
+         y1:=(x-2*x*x)/(x*x*x+1);
+         y2:=(exp(x)+exp(-x))/2*x;
+         y3:=(4*x*x*x-2*x*x+5*x);
+         sg.Cells[1,i]:=floattostr(x);
+         sg.Cells[2,i]:=floattostr(y1);
+         sg.Cells[3,i]:=floattostr(y2);
+         sg.cells[4,i]:=floattostr(y3);
+         x:=x+h;
+         sg.cells[0,i]:=inttostr(i);
+       end;
+     sg.rowcount:=n+2;
+     sg.visible:=true;
+  end;
+  if combobox1.Text='Memo' then    /////Memo
+    begin
+     a:=strtofloat(edit1.Text);
+     b:=strtofloat(edit2.Text);
+     n:=strtoint(edit3.Text);
+
+   if b<=a then begin
+     messageDlg('B  äîëæíî áûòü áîëüøå À!', mterror,[mbOK],0);
+     edit1.SetFocus;
+     exit;
+   end;
+
+   if n<1 then begin
+     messageDlg('N äîëæíî áûòü áîëüøå 1!', mterror,[mbOK],0);
+     edit1.SetFocus;
+     exit;
+   end;
+
+     h:=(b-a)/n;
+     x:=a;
+     form2.Memo1.Lines.add('¹      x      y1      y2      y3');
+     for i:=1 to n+1 do
+       begin
+         y1:=(x-2*x*x)/(x*x*x+1);
+         y2:=(exp(x)+exp(-x))/2*x;
+         y3:=(4*x*x*x-2*x*x+5*x);
+         str(y1:6:3,s1);
+         str(y2:6:3,s2);
+         str(y3:6:3,s3);
+         str(x:6:3,s);
+         form2.Memo1.Lines.add(inttostr(i)+'  '+s+' '+s1+' '+
+         s2+' '+s3);
+         x:=x+h;
+       end;
+       form2.show;
+    end;
+
+end;
+
+
+//Ïðîöåäóðà î÷èñòêè
+procedure TForm1.Button2Click(Sender: TObject);
+var i,n:integer;
+begin
+ n:=strtoint(edit3.Text);
+ for i:=1 to n+1 do
+ sg.Rows[i].Clear;
+ edit1.clear;
+ edit2.clear;
+ edit3.clear;
+ edit1.SetFocus;
+end;
+
+procedure Float(var Key: Char);
+var allow:string;i:integer;ok:boolean;
+begin
+  allow:='1234567890-,'+#8;
+  ok:=false;
+  for i:=1 to length(allow)do
+  if key=allow[i]then ok:=true;
+  if not ok then key:=#0;
+end;
+
+procedure Int(var Key: Char);
+var allow:string;i:integer;ok:boolean;
+begin
+  allow:='1234567890,'+#8;
+  ok:=false;
+  for i:=1 to length(allow)do
+  if key=allow[i]then ok:=true;
+  if not ok then key:=#0;
+end;
+
+procedure TForm1.Edit1KeyPress(Sender: TObject; var Key: Char);
+begin
+Float(Key);
+end;
+
+procedure TForm1.Edit2KeyPress(Sender: TObject; var Key: Char);
+begin
+Float(Key);
+end;
+
+procedure TForm1.Edit3KeyPress(Sender: TObject; var Key: Char);
+begin
+Int(Key);
+end;
+
+
+
+end.
+
+
+unit Unit2;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, StdCtrls, Buttons;
+
+type
+  TForm2 = class(TForm)
+    Memo1: TMemo;
+    BitBtn1: TBitBtn;
+    BitBtn2: TBitBtn;
+    procedure BitBtn2Click(Sender: TObject);
+    procedure BitBtn1Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form2: TForm2;
+
+implementation
+
+uses Unit1;
+
+{$R *.dfm}
+
+procedure TForm2.BitBtn2Click(Sender: TObject);
+begin
+ Form1.close;
+ Form2.Close;
+end;
+
+procedure TForm2.BitBtn1Click(Sender: TObject);
+begin
+form1.show;
+end;
+
+end.
