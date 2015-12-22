@@ -1,0 +1,45 @@
+Program palachanin31;
+var
+  s,min,s1,t1:string;
+  i,kol,t,d,j :integer;
+  d2,k: Integer;
+begin
+  Write('Введите текст: ');
+  readln(s);
+  s:=s+' ';  min:=s; s1:='';
+  For i:=1 to length(s) do
+    if s[i]<>' ' then
+      s1:=s1+s[i]
+    else
+      begin
+        if (length(s1)<length(min)) and (length(s1)<>0) then
+          min:=s1;
+        s1:='';
+      end;  //нашли слово минимальной длины
+writeln('Слово минимальной длины= ',min);
+d:=length(min);//длина миниального слова
+t:=2*d;//длина слов, которые меняем
+i:=1;
+while i<length(s) do
+if (s[i]<>' ')and(s[i-1]=' ') then //начало слова
+ begin
+  j:=i;
+  k:=0; //длина слова
+  while(j<length(s))and(s[j]<>' ') do//пока не конец и не пробел
+   begin
+    j:=j+1;//идем вперед
+    k:=k+1;///считаем буквы
+   end;
+  if k=t then //если длина подходит
+   begin
+    Delete (s,i,k);//удалим слово
+    Insert(min,s,i);//вставим мин
+    i:=i+d;//перешагнем через мин
+   end
+  else i:=i+k;//иначе перешагнем через слово
+ end
+else i:=i+1;//пропустим пробелы
+s:=trim(s);//уберем пробелы в начале и конце
+WriteLn('Полученный текст: ');
+WriteLn (s);
+end.
