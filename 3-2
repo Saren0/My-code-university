@@ -1,0 +1,48 @@
+Program palachanin32;
+var
+  s,min,s1,t:string;
+  St1:string;
+  n,i,ns,ds,d,d_max:integer;
+  d2,k: integer;
+  l1,l2: integer;
+begin
+  Write('Введите текст: ');
+  readln(s);
+  s:=s+' ';  min:=s; s1:='';
+  For i:=1 to length(s) do
+    if s[i]<>' ' then
+      s1:=s1+s[i]
+    else
+      begin
+        if (length(s1)<length(min)) and (length(s1)<>0) then
+          min:=s1;
+        s1:='';
+      end;   //нашли слово минимальной длинны
+
+  d:=Length(s);
+  ns:=1;
+  d_max:=0;
+ For i:=1 to d do
+ If ((s[i]=' ') or (s[i]='.')) then
+   begin
+      ds:=i-ns;
+         If ds>d_max then
+         begin
+            d_max:=ds;
+            st1:=Copy(s,ns,ds);
+         end;
+         ns:=i+1;
+   end; //нашли слово максимальной длинны
+
+  l1:=length(min);
+  l2:=length(st1);
+  if l1<>l2 then    //сравнения длинн слов
+    d2:=Length(min);
+ Repeat
+   k:=Pos(min,s);
+    If k<>0 then
+    begin
+      Delete (s,k,d2);
+      Insert(st1,s,k);
+    end;
+  Until k=0;       //замена минимального на максимальное
