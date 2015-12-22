@@ -1,0 +1,300 @@
+unit Vector;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, Grids, ComCtrls, StdCtrls, Buttons, ExtCtrls;
+
+type
+  mas = array of integer;
+
+type
+  TForm1 = class(TForm)
+    SG: TStringGrid;
+    CloseBBtn: TBitBtn;
+    VectorEdit: TEdit;
+    VectorUD: TUpDown;
+    Task01Btn: TButton;
+    Task02Btn: TButton;
+    Task03Btn: TButton;
+    TaskPanel: TPanel;
+    StartBbtn: TBitBtn;
+    SaveBbtn: TBitBtn;
+    LoadBbtn: TBitBtn;
+    TaskMemo: TMemo;
+    OpenDialog: TOpenDialog;
+    SaveDialog: TSaveDialog;
+    procedure VectorEditChange(Sender: TObject);
+    procedure StartBbtnClick(Sender: TObject);
+    procedure SaveBbtnClick(Sender: TObject);
+    procedure LoadBbtnClick(Sender: TObject);
+    procedure Task01BtnClick(Sender: TObject);
+    procedure FormActivate(Sender: TObject);
+    procedure Task02BtnClick(Sender: TObject);
+    procedure Task03BtnClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form1: TForm1;
+
+implementation
+
+uses Vector2;
+
+{$R *.dfm}
+
+
+procedure TForm1.VectorEditChange(Sender: TObject);
+begin
+  SG.ColCount:= strtoint(VectorEdit.Text) + 1;
+end;
+
+procedure TForm1.StartBbtnClick(Sender: TObject);
+begin
+  StartBbtn.Visible:= false;
+  Task01Btn.Visible:= true;
+  Task02Btn.Visible:= true;
+  Task03Btn.Visible:= true;
+  SG.Visible:= true;
+  VectorUD.Visible:= true;
+  VectorEdit.Visible:= true;
+end;
+
+procedure TForm1.SaveBbtnClick(Sender: TObject);
+var
+  f : TextFile;
+  i, j, n : integer;
+begin
+  SaveDialog.Filter:= 'Òåêñòîâûå ôàéëû|*.txt|';
+  n:= strtoint(VectorEdit.text);
+  if SaveDialog.Execute then
+  begin
+    AssignFile (f, SaveDialog.Filename);
+    Rewrite(f);
+    writeln (f, n);
+    for i:= 1 to n do
+    begin
+      for j:= 1 to n do
+        writeln (f, SG.cells[i, j]);
+    end;
+    CloseFile (f);
+  end;
+end;
+
+
+
+procedure TForm1.LoadBbtnClick(Sender: TObject);
+var
+  i, j, n : integer;
+  f : TextFile;
+  s : string;
+begin
+  OpenDialog.Filter:= 'Òåêñòîâûå ôàéëû|*.txt|';
+  if OpenDialog.Execute and FileExists(OpenDialog.Filename) then
+  begin
+    StartBbtn.Click;
+    AssignFile (f, OpenDialog.Filename);
+    Reset(f);
+    readln(f, n);
+    VectorEdit.Text:= inttostr(n);
+    for i:= 1 to n do
+    for j:= 1 to n do
+    begin
+      readln(f, s);
+      SG.cells[i, j]:= s;
+    end;
+    CloseFile (f);
+  end;
+end;
+
+procedure TForm1.FormActivate(Sender: TObject);
+begin
+  Form1.Left := (Screen.Width - Width) div 2;
+  Form1.Top := (Screen.Height - Height) div 2;
+end;
+
+procedure TForm1.Task01BtnClick(Sender: TObject);
+var
+  N: byte;
+ k, i: integer;
+  a : mas;
+begin
+  Form2.Show;
+  Form1.Hide;
+  Form2.L1.Visible:= false;
+  Form2.SG.Visible:= false;
+  n:= strtoint(VectorEdit.text);
+  setlength(a, n + 1);
+  Form2.SG.ColCount:= n + 1;
+  Form2.SG2.ColCount:= n + 1;
+  
+  for i:=1 to n do
+    if SG.cells[i, 1] = '' then
+    begin
+      messagedlg('Çàïîëíèòå Âåêòîð!', mterror, [mbok], 0);
+      exit;
+    end;
+  for i:= 1 to n do
+    a[i]:= strtoint(SG.cells[i, 1]);
+
+  for i:= 1 to n do
+    Form2.SG2.Cells[i, 1]:= inttostr(a[i]);
+ //////////////////////////////////////////////
+       k:=0;
+For i:=1 to N do
+   If A[i]=0 then k:=i;
+   Form2.L3.Visible:= true;
+   Form2.L3.Caption:= 'Ðåçóëüòàò = ' + inttostr(k);
+   //////////////////////////////////////
+end;
+
+procedure TForm1.Task02BtnClick(Sender: TObject);
+var
+  a : mas;
+  f: boolean;
+  i,n: integer;
+begin
+  Form2.Show;
+  Form1.Hide;
+  Form2.L1.Visible:= true;
+  Form2.SG.Visible:= true;
+
+  n:= strtoint(VectorEdit.text);
+  setlength(a, n + 1);
+  Form2.SG.ColCount:= n + 1;
+  Form2.SG2.ColCount:= n + 1;
+
+  for i:=1 to n do
+    if SG.cells[i, 1] = '' then
+    begin
+      messagedlg('Çàïîëíèòå Âåêòîð!', mterror, [mbok], 0);
+      exit;
+    end;
+  for i:= 1 to n do
+    a[i]:= strtoint(SG.cells[i, 1]);
+
+  for i:= 1 to n do
+    Form2.SG2.Cells[i, 1]:= inttostr(a[i]);
+
+ ///////////////////////
+  for i := 1 to n do
+    if A[i] < -3 then f := true;
+  for i:= 1 to n do
+  begin
+    if not(f) then A[i] := A[i] * 2  else
+    if A[i] > 0 then A[i] := sqr(A[i]);
+  end;
+ ///////////////////////
+
+  for i:= 1 to n do
+    Form2.SG.Cells[i, 1]:= inttostr(a[i]);
+end;
+
+procedure TForm1.Task03BtnClick(Sender: TObject);
+var
+  a, b : mas;
+  N: byte;
+ k, i, j: integer;
+ min: integer;
+ i_min: integer;
+begin
+  Form2.Show;
+  Form1.Hide;
+  Form2.L1.Visible:= true;
+  Form2.SG.Visible:= true;
+
+  n:= strtoint(VectorEdit.text);
+  setlength(a, n + 1);
+  setlength(b, n + 1);
+  Form2.SG.ColCount:= n + 1;
+  Form2.SG2.ColCount:= n + 1;
+  
+  for i:=1 to n do
+    if SG.cells[i, 1] = '' then
+    begin
+      messagedlg('Çàïîëíèòå Âåêòîð!', mterror, [mbok], 0);
+      exit;
+    end;
+  for i:= 1 to n do
+    a[i]:= strtoint(SG.cells[i, 1]);
+
+  for i:= 1 to n do
+    Form2.SG2.Cells[i, 1]:= inttostr(a[i]);
+
+  ///////////
+ For i:=1 to n do
+begin
+	min:=A[i];
+	i_min:=i;
+	For j:=1 to n do
+		If A[j]<min then
+		begin
+			min:=A[j];
+			i_min:=j;
+		end;
+	B[i]:=min;
+	A[i_min]:=99;
+end;
+  ///////////
+
+  for i:= 1 to n do
+    Form2.SG.Cells[i, 1]:= inttostr(b[i]);
+end;
+
+end.
+
+
+
+unit Vector2;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, StdCtrls, Buttons, Grids;
+
+type
+  TForm2 = class(TForm)
+    CloseBBtn: TBitBtn;
+    SG: TStringGrid;
+    L1: TLabel;
+    SG2: TStringGrid;
+    L2: TLabel;
+    L3: TLabel;
+    procedure CloseBBtnClick(Sender: TObject);
+    procedure FormActivate(Sender: TObject);
+
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form2: TForm2;
+
+implementation
+
+uses Vector;
+
+{$R *.dfm}
+
+procedure TForm2.CloseBBtnClick(Sender: TObject);
+begin
+  L3.Caption:= '';
+  Form1.Show;
+  Form2.Hide;
+end;
+
+procedure TForm2.FormActivate(Sender: TObject);
+begin
+  Form2.Left := (Screen.Width - Width) div 2;
+  Form2.Top := (Screen.Height - Height) div 2;
+end;
+
+end.
