@@ -1,0 +1,1715 @@
+unit Base1;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, ExtCtrls, DBCtrls, Grids, DBGrids, Menus, StdCtrls, Buttons, DB;
+
+type
+  TMyBase = class(TForm)
+    MyDBGrid1: TDBGrid;
+    MyDBNavigator: TDBNavigator;
+    PopMenu1: TPopupMenu;
+    N1: TMenuItem;
+    N2: TMenuItem;
+    N3: TMenuItem;
+    N4: TMenuItem;
+    BBtn1: TBitBtn;
+    BBtn2: TBitBtn;
+    BBtn3: TBitBtn;
+    BBtn4: TBitBtn;
+    BBtn5: TBitBtn;
+    MainMenu1: TMainMenu;
+    N5: TMenuItem;
+    N6: TMenuItem;
+    N7: TMenuItem;
+    N8: TMenuItem;
+    N9: TMenuItem;
+    N10: TMenuItem;
+    N11: TMenuItem;
+    N12: TMenuItem;
+    N13: TMenuItem;
+    N14: TMenuItem;
+    N15: TMenuItem;
+    N16: TMenuItem;
+    N17: TMenuItem;
+    N18: TMenuItem;
+    N19: TMenuItem;
+    N20: TMenuItem;
+    N21: TMenuItem;
+    N22: TMenuItem;
+    N23: TMenuItem;
+    N24: TMenuItem;
+    N25: TMenuItem;
+    N26: TMenuItem;
+    N27: TMenuItem;
+    N28: TMenuItem;
+    N29: TMenuItem;
+    N30: TMenuItem;
+    N32: TMenuItem;
+    N33: TMenuItem;
+    N34: TMenuItem;
+    N35: TMenuItem;
+    N40: TMenuItem;
+    N37: TMenuItem;
+    N38: TMenuItem;
+    N110: TMenuItem;
+    N210: TMenuItem;
+    N39: TMenuItem;
+    N41: TMenuItem;
+    N42: TMenuItem;
+    N43: TMenuItem;
+    N44: TMenuItem;
+    N45: TMenuItem;
+    N46: TMenuItem;
+    N47: TMenuItem;
+    N48: TMenuItem;
+    N49: TMenuItem;
+    procedure N1Click(Sender: TObject);
+    procedure N2Click(Sender: TObject);
+    procedure N3Click(Sender: TObject);
+    procedure N4Click(Sender: TObject);
+    procedure BBtn2Click(Sender: TObject);
+    procedure BBtn1Click(Sender: TObject);
+    procedure BBtn4Click(Sender: TObject);
+    procedure BBtn3Click(Sender: TObject);
+    procedure BBtn5Click(Sender: TObject);
+    procedure N10Click(Sender: TObject);
+    procedure N11Click(Sender: TObject);
+    procedure N9Click(Sender: TObject);
+    procedure N14Click(Sender: TObject);
+    procedure N15Click(Sender: TObject);
+    procedure N16Click(Sender: TObject);
+    procedure N17Click(Sender: TObject);
+    procedure N22Click(Sender: TObject);
+    procedure N23Click(Sender: TObject);
+    procedure N24Click(Sender: TObject);
+    procedure N25Click(Sender: TObject);
+    procedure N26Click(Sender: TObject);
+    procedure N27Click(Sender: TObject);
+    procedure N28Click(Sender: TObject);
+    procedure N29Click(Sender: TObject);
+    procedure N30Click(Sender: TObject);
+    procedure ClearClick(Sender: TObject);
+    procedure N34Click(Sender: TObject);
+    procedure N35Click(Sender: TObject);
+    procedure N40Click(Sender: TObject);
+    procedure N37Click(Sender: TObject);
+    procedure N38Click(Sender: TObject);
+    procedure N32Click(Sender: TObject);
+    procedure N110Click(Sender: TObject);
+    procedure N210Click(Sender: TObject);
+    procedure N39Click(Sender: TObject);
+    procedure N8Click(Sender: TObject);
+    procedure N42Click(Sender: TObject);
+    procedure N44Click(Sender: TObject);
+    procedure N41Click(Sender: TObject);
+    procedure N43Click(Sender: TObject);
+    procedure N45Click(Sender: TObject);
+    procedure N46Click(Sender: TObject);
+    procedure N47Click(Sender: TObject);
+    procedure N48Click(Sender: TObject);
+    procedure N49Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  MyBase: TMyBase;
+  s: integer;
+
+implementation
+
+uses DMBase, EDITBD, MAin1, SEARCH, Zaprosi, L2;
+
+{$R *.dfm}
+
+
+
+
+procedure TMyBase.N1Click(Sender: TObject);
+begin
+  mydbgrid1.DataSource:=dm.BiletiSource;
+  MyDBNavigator.DataSource:=dm.BiletiSource;
+  N18.Enabled:=true;
+  N19.Enabled:=false;
+  N20.Enabled:=false;
+  N21.Enabled:=false;
+  N34.Enabled:=false;
+  N35.Enabled:=false;
+  N40.Enabled:=false;
+  N37.Enabled:=false;
+  N38.Enabled:=false;
+
+end;
+
+procedure TMyBase.N2Click(Sender: TObject);
+begin
+  mydbgrid1.DataSource:=dm.PersonalSource;
+  MyDBNavigator.DataSource:=dm.PersonalSource;
+  N18.Enabled:=false;
+  N19.Enabled:=true;
+  N20.Enabled:=false;
+  N21.Enabled:=false;
+  N34.Enabled:=true;
+  N35.Enabled:=true;
+  N40.Enabled:=true;
+  N37.Enabled:=true;
+  N38.Enabled:=false;
+end;
+
+procedure TMyBase.N3Click(Sender: TObject);
+begin
+  mydbgrid1.DataSource:=dm.AttrakcioniSource;
+  MyDBNavigator.DataSource:=dm.AttrakcioniSource;
+  N18.Enabled:=false;
+  N19.Enabled:=false;
+  N20.Enabled:=true;
+  N21.Enabled:=false;
+  N34.Enabled:=false;
+  N35.Enabled:=false;
+  N40.Enabled:=false;
+  N37.Enabled:=false;
+  N38.Enabled:=false;
+end;
+
+procedure TMyBase.N4Click(Sender: TObject);
+begin
+  mydbgrid1.DataSource:=dm.DolzhnostiSource;
+  MyDBNavigator.DataSource:=dm.DolzhnostiSource;
+  N18.Enabled:=false;
+  N19.Enabled:=false;
+  N20.Enabled:=false;
+  N21.Enabled:=true;
+  N34.Enabled:=false;
+  N35.Enabled:=false;
+  N40.Enabled:=false;
+  N37.Enabled:=false;
+  N38.Enabled:=true;
+end;
+
+procedure TMyBase.BBtn2Click(Sender: TObject);
+begin
+    BDEDIT.E6.Visible:=false;
+    BDEDIT.E7.Visible:=false;
+    BDEDIT.E5.Visible:=true;
+    BDEDIT.SText6.Visible:=false;
+    BDEDIT.SText7.Visible:=false;
+    BDEDIT.SText5.Visible:=true;
+    BDEDIT.E6.Text:='0';
+    BDEDIT.E7.Text:='0';
+    BDEDIT.E5.Text:='0';
+
+
+if MyDBGrid1.Datasource=dm.BiletiSource then
+begin
+  DM.Bileti.Append;
+	BDEdit.show;
+  BDEDIT.SText1.Caption:='Номер билета';
+  BDEDIT.SText2.Caption:='Код аттракциона';
+  BDEDIT.SText3.Caption:='Стоимость билета';
+  BDEDIT.SText4.Caption:='Код сотрудника';
+  BDEDIT.SText5.Caption:='Дата продажи';
+  MyBase.Enabled:=false;
+  BDEDIT.E5.Text:='';
+  BDEDIT.E4.Text:='';
+  BDEDIT.E3.Text:='';
+  BDEDIT.E2.Text:='';
+  BDEDIT.E1.Text:='';
+end
+else if MyDBGrid1.Datasource=dm.PersonalSource then
+begin
+  DM.Personal.Append;
+	BDEdit.show;
+  BDEDIT.SText1.Caption:='Код сотрудника';
+  BDEDIT.SText2.Caption:='Код должности';
+  BDEDIT.SText3.Caption:='ФИО сотрудника';
+  BDEDIT.SText4.Caption:='Адресс сотрудника';
+  BDEDIT.SText5.Caption:='Телефон';
+  BDEDIT.SText6.Caption:='Год Рождения';
+  MyBase.Enabled:=false;
+  BDEDIT.E6.Visible:=true;
+  BDEDIT.SText6.Visible:=true;
+  BDEDIT.E6.Text:='';
+  BDEDIT.E5.Text:='';
+  BDEDIT.E4.Text:='';
+  BDEDIT.E3.Text:='';
+  BDEDIT.E2.Text:='';
+  BDEDIT.E1.Text:='';
+end
+else if MyDBGrid1.Datasource=dm.AttrakcioniSource then
+begin
+  DM.Attrakcioni.Append;
+	BDEdit.show;
+  BDEDIT.SText1.Caption:='Код аттракциона';
+  BDEDIT.SText2.Caption:='Название аттракциона';
+  BDEDIT.SText3.Caption:='Год установки';
+  MyBase.Enabled:=false;
+  BDEDIT.E5.Visible:=false;
+  BDEDIT.SText5.Visible:=false;
+  BDEDIT.E4.Visible:=false;
+  BDEDIT.SText4.Visible:=false;
+  BDEDIT.E3.Text:='';
+  BDEDIT.E2.Text:='';
+  BDEDIT.E1.Text:='';
+end
+else if MyDBGrid1.Datasource=dm.DolzhnostiSource then
+begin
+  DM.Dolzhnosti.Append;
+	BDEdit.show;
+  BDEDIT.SText1.Caption:='Код должности';
+  BDEDIT.SText2.Caption:='Наименование должности';
+  BDEDIT.SText3.Caption:='Оклад';
+  BDEDIT.SText4.Caption:='Премия';
+  MyBase.Enabled:=false;
+  BDEDIT.E5.Visible:=false;
+  BDEDIT.SText5.Visible:=false;
+  BDEDIT.E4.Text:='';
+  BDEDIT.E3.Text:='';
+  BDEDIT.E2.Text:='';
+  BDEDIT.E1.Text:='';
+end
+else
+begin
+  messagedlg('Выберите таблицу!',mterror,[mbok],0);
+  exit;
+end;
+
+
+
+end;
+
+procedure TMyBase.BBtn1Click(Sender: TObject);
+begin
+    BDEDIT.E6.Visible:=false;
+    BDEDIT.E7.Visible:=false;
+    BDEDIT.E5.Visible:=true;
+    BDEDIT.SText6.Visible:=false;
+    BDEDIT.SText7.Visible:=false;
+    BDEDIT.SText5.Visible:=true;
+    BDEDIT.E6.Text:='0';
+    BDEDIT.E7.Text:='0';
+    BDEDIT.E5.Text:='0';
+
+if MyDBGrid1.Datasource=dm.BiletiSource then
+begin
+	BDEdit.show;
+  BDEDIT.SText1.Caption:='Номер билета';
+  BDEDIT.SText2.Caption:='Код аттракциона';
+  BDEDIT.SText3.Caption:='Стоимость билета';
+  BDEDIT.SText4.Caption:='Код сотрудника';
+  BDEDIT.SText5.Caption:='Дата продажи';
+  MyBase.Enabled:=false;
+  BDEDIT.E5.Visible:=true;
+  BDEDIT.SText5.Visible:=true;
+  BDEDIT.E4.Visible:=true;
+  BDEDIT.SText4.Visible:=true;
+  BDEDIT.E1.Text:=DM.Bileti.FieldByName('Nomer_bileta').Value;
+  BDEDIT.E2.Text:=DM.Bileti.FieldByName('Kod_attrakciona').Value;
+  BDEDIT.E3.Text:=DM.Bileti.FieldByName('Stoimost_bileta').Value;
+  BDEDIT.E4.Text:=DM.Bileti.FieldByName('Kod_sotrydnika').Value;
+  BDEDIT.E5.Text:=DM.Bileti.FieldByName('Data_prodazhi').Value;
+  DM.Bileti.Edit;
+  
+end
+else if MyDBGrid1.Datasource=dm.PersonalSource then
+begin
+	BDEdit.show;
+  BDEDIT.SText1.Caption:='Код сотрудника';
+  BDEDIT.SText2.Caption:='Код должности';
+  BDEDIT.SText3.Caption:='ФИО сотрудника';
+  BDEDIT.SText4.Caption:='Адресс сотрудника';
+  BDEDIT.SText5.Caption:='Телефон';
+  BDEDIT.SText6.Caption:='Год Рождения';
+  MyBase.Enabled:=false;
+  BDEDIT.E5.Visible:=true;
+  BDEDIT.SText5.Visible:=true;
+  BDEDIT.E4.Visible:=true;
+  BDEDIT.SText4.Visible:=true;
+  BDEDIT.E6.Visible:=true;
+  BDEDIT.SText6.Visible:=true;
+  BDEDIT.E1.Text:=DM.Personal.FieldByName('Kod_sotrydnika').Value;
+  BDEDIT.E2.Text:=DM.Personal.FieldByName('Kod_dolzhnosti').Value;
+  BDEDIT.E3.Text:=DM.Personal.FieldByName('FIO_sotrydnika').Value;
+  BDEDIT.E4.Text:=DM.Personal.FieldByName('Adres_sotrydnika').Value;
+  BDEDIT.E5.Text:=DM.Personal.FieldByName('Telefon').Value;
+  BDEDIT.E6.Text:=DM.Personal.FieldByName('God_Rozhdenia').Value;
+  DM.Personal.Edit;
+
+end
+else if MyDBGrid1.Datasource=dm.AttrakcioniSource then
+begin
+	BDEdit.show;
+  BDEDIT.SText1.Caption:='Код аттракциона';
+  BDEDIT.SText2.Caption:='Название аттракциона';
+  BDEDIT.SText3.Caption:='Год установки';
+  MyBase.Enabled:=false;
+  BDEDIT.E5.Visible:=false;
+  BDEDIT.SText5.Visible:=false;
+  BDEDIT.E4.Visible:=false;
+  BDEDIT.SText4.Visible:=false;
+  BDEDIT.E1.Text:=DM.Attrakcioni.FieldByName('Kod_Attrakciona').Value;
+  BDEDIT.E2.Text:=DM.Attrakcioni.FieldByName('Nazvanie_attrakciona').Value;
+  BDEDIT.E3.Text:=DM.Attrakcioni.FieldByName('God_ystanovki').Value;
+  DM.Attrakcioni.Edit;
+
+end
+else if MyDBGrid1.Datasource=dm.DolzhnostiSource then
+begin
+	BDEdit.show;
+  BDEDIT.SText1.Caption:='Код должности';
+  BDEDIT.SText2.Caption:='Наименование должности';
+  BDEDIT.SText3.Caption:='Оклад';
+  BDEDIT.SText4.Caption:='Премия';
+  MyBase.Enabled:=false;
+  BDEDIT.E5.Visible:=false;
+  BDEDIT.SText5.Visible:=false;
+  BDEDIT.E1.Text:=DM.Dolzhnosti.FieldByName('Kod_dolzhnosti').Value;
+  BDEDIT.E2.Text:=DM.Dolzhnosti.FieldByName('Naimenovanie_dolzhnosti').Value;
+  BDEDIT.E3.Text:=DM.Dolzhnosti.FieldByName('Oklad').Value;
+  BDEDIT.E4.Text:=DM.Dolzhnosti.FieldByName('Premia').Value;
+  DM.Dolzhnosti.Edit;
+end
+else
+begin
+  messagedlg('Выберите таблицу!',mterror,[mbok],0);
+  exit;
+end;
+
+
+
+end;
+
+procedure TMyBase.BBtn4Click(Sender: TObject);
+begin
+
+    BDEDIT.E6.Visible:=false;
+    BDEDIT.E7.Visible:=false;
+    BDEDIT.E5.Visible:=true;
+    BDEDIT.SText6.Visible:=false;
+    BDEDIT.SText7.Visible:=false;
+    BDEDIT.SText5.Visible:=true;
+    BDEDIT.E6.Text:='0';
+    BDEDIT.E7.Text:='0';
+    BDEDIT.E5.Text:='0';
+
+if MyDBGrid1.Datasource=dm.BiletiSource then
+begin
+  DM.Bileti.Insert;
+  BDEdit.show;
+  BDEDIT.SText1.Caption:='Номер билета';
+  BDEDIT.SText2.Caption:='Код аттракциона';
+  BDEDIT.SText3.Caption:='Стоимость билета';
+  BDEDIT.SText4.Caption:='Код сотрудника';
+  BDEDIT.SText5.Caption:='Дата продажи';
+  MyBase.Enabled:=false;
+  BDEDIT.E5.Text:='';
+  BDEDIT.E4.Text:='';
+  BDEDIT.E3.Text:='';
+  BDEDIT.E2.Text:='';
+  BDEDIT.E1.Text:='';
+end
+else if MyDBGrid1.Datasource=dm.PersonalSource then
+begin
+  DM.Personal.insert;
+	BDEdit.show;
+  BDEDIT.SText1.Caption:='Код сотрудника';
+  BDEDIT.SText2.Caption:='Код должности';
+  BDEDIT.SText3.Caption:='ФИО сотрудника';
+  BDEDIT.SText4.Caption:='Адресс сотрудника';
+  BDEDIT.SText5.Caption:='Телефон';
+  BDEDIT.SText6.Caption:='Год Рождения';
+  MyBase.Enabled:=false;
+  BDEDIT.E6.Visible:=true;
+  BDEDIT.SText6.Visible:=true;
+  BDEDIT.E6.Text:='';
+  BDEDIT.E5.Text:='';
+  BDEDIT.E4.Text:='';
+  BDEDIT.E3.Text:='';
+  BDEDIT.E2.Text:='';
+  BDEDIT.E1.Text:='';
+end
+else if MyDBGrid1.Datasource=dm.AttrakcioniSource then
+begin
+  DM.Attrakcioni.insert;
+	BDEdit.show;
+  BDEDIT.SText1.Caption:='Код аттракциона';
+  BDEDIT.SText2.Caption:='Название аттракциона';
+  BDEDIT.SText3.Caption:='Год установки';
+  MyBase.Enabled:=false;
+  BDEDIT.E5.Visible:=false;
+  BDEDIT.SText5.Visible:=false;
+  BDEDIT.E4.Visible:=false;
+  BDEDIT.SText4.Visible:=false;
+  BDEDIT.E3.Text:='';
+  BDEDIT.E2.Text:='';
+  BDEDIT.E1.Text:='';
+end
+else if MyDBGrid1.Datasource=dm.DolzhnostiSource then
+begin
+  DM.Dolzhnosti.insert;
+	BDEdit.show;
+  BDEDIT.SText1.Caption:='Код должности';
+  BDEDIT.SText2.Caption:='Наименование должности';
+  BDEDIT.SText3.Caption:='Оклад';
+  BDEDIT.SText4.Caption:='Премия';
+  MyBase.Enabled:=false;
+  BDEDIT.E5.Visible:=false;
+  BDEDIT.SText5.Visible:=false;
+  BDEDIT.E4.Text:='';
+  BDEDIT.E3.Text:='';
+  BDEDIT.E2.Text:='';
+  BDEDIT.E1.Text:='';
+end
+else
+begin
+  messagedlg('Выберите таблицу!',mterror,[mbok],0);
+  exit;
+end;
+
+
+
+end;
+
+procedure TMyBase.BBtn3Click(Sender: TObject);
+begin
+if messagedlg('Удалить?',mtinformation,[mbyes,mbno],0)=mryes
+then
+begin
+  if MyDBGrid1.Datasource=dm.BiletiSource then
+  begin
+    DM.Bileti.Delete;
+  end
+  else if MyDBGrid1.Datasource=dm.PersonalSource then
+  begin
+    DM.Personal.Delete;
+  end
+  else if MyDBGrid1.Datasource=dm.AttrakcioniSource then
+  begin
+    DM.Attrakcioni.Delete;
+  end
+  else if MyDBGrid1.Datasource=dm.DolzhnostiSource then
+  begin
+    DM.Dolzhnosti.Delete;
+  end
+else
+begin
+  messagedlg('Точно?!',mterror,[mbno],0);
+  exit;
+end;
+end else exit;
+
+
+
+end;
+
+procedure TMyBase.BBtn5Click(Sender: TObject);
+begin
+  main.close;
+end;
+
+procedure TMyBase.N10Click(Sender: TObject);
+begin
+  BBtn3.click;
+end;
+
+procedure TMyBase.N11Click(Sender: TObject);
+begin
+  BBTN1.click;
+end;
+
+procedure TMyBase.N9Click(Sender: TObject);
+begin
+  BBTN2.click;
+end;
+
+procedure TMyBase.N14Click(Sender: TObject);
+begin
+  N1.Click;
+end;
+
+procedure TMyBase.N15Click(Sender: TObject);
+begin
+  N2.Click;
+end;
+
+procedure TMyBase.N16Click(Sender: TObject);
+begin
+  N3.Click;
+end;
+
+procedure TMyBase.N17Click(Sender: TObject);
+begin
+  N4.Click;
+end;
+
+procedure TMyBase.N22Click(Sender: TObject);
+begin
+  SRCH.show;
+  SRCH.SSearch.Caption:='Номер билета';
+  SRCH.E8.Text:='';
+  S:=1;
+end;
+
+procedure TMyBase.N23Click(Sender: TObject);
+begin
+  SRCH.show;
+  SRCH.SSearch.Caption:='Код аттракциона';
+  SRCH.E8.Text:='';
+  S:=2;
+end;
+
+procedure TMyBase.N24Click(Sender: TObject);
+begin
+  SRCH.show;
+  SRCH.SSearch.Caption:='Стоимость билета';
+  SRCH.E8.Text:='';
+  S:=3;
+end;
+
+procedure TMyBase.N30Click(Sender: TObject);
+begin
+  SRCH.show;
+  SRCH.SSearch.Caption:='Код сотрудника';
+  SRCH.E8.Text:='';
+  S:=4;
+end;
+
+procedure TMyBase.N25Click(Sender: TObject);
+begin
+  SRCH.show;
+  SRCH.SSearch.Caption:='Код сотрудника';
+  SRCH.E8.Text:='';
+  S:=1;
+end;
+
+procedure TMyBase.N42Click(Sender: TObject);
+begin
+  SRCH.show;
+  SRCH.SSearch.Caption:='Код должности';
+  SRCH.E8.Text:='';
+  S:=2;
+end;
+
+procedure TMyBase.N44Click(Sender: TObject);
+begin
+  SRCH.show;
+  SRCH.SSearch.Caption:='Адресс сотрудника';
+  SRCH.E8.Text:='';
+  S:=4;
+end;
+
+procedure TMyBase.N26Click(Sender: TObject);
+begin
+  SRCH.show;
+  SRCH.SSearch.Caption:='Код аттракциона';
+  SRCH.E8.Text:='';
+  S:=1;
+end;
+
+procedure TMyBase.N27Click(Sender: TObject);
+begin
+  SRCH.show;
+  SRCH.SSearch.Caption:='Название аттракциона';
+  SRCH.E8.Text:='';
+  S:=2;
+end;
+
+procedure TMyBase.N28Click(Sender: TObject);
+begin
+  SRCH.show;
+  SRCH.SSearch.Caption:='Год установки';
+  SRCH.E8.Text:='';
+  S:=3;
+end;
+
+procedure TMyBase.N29Click(Sender: TObject);
+begin
+  SRCH.show;
+  SRCH.SSearch.Caption:='Код должности';
+  SRCH.E8.Text:='';
+  S:=1;
+end;
+
+
+procedure TMyBase.ClearClick(Sender: TObject);
+begin
+  DM.Bileti.Filter:='';
+  DM.Personal.Filter:='';
+  DM.Dolzhnosti.Filter:='';
+  DM.Attrakcioni.Filter:='';
+end;
+
+procedure TMyBase.N34Click(Sender: TObject);
+begin
+ DM.Personal.IndexFieldNames:='Kod_sotrydnika';
+end;
+
+procedure TMyBase.N35Click(Sender: TObject);
+begin
+  DM.Personal.Active:=False;
+  DM.Personal.Exclusive:=true;
+  DM.Personal.AddIndex('Nomerok','Kod_sotrydnika',[ixunique,ixdescending]);
+  DM.Personal.IndexName:='Nomerok';
+  DM.Personal.Exclusive:=false;
+  DM.Personal.Active:=true;
+end;
+
+procedure TMyBase.N40Click(Sender: TObject);
+begin
+  DM.Personal.IndexName:='QWE';
+  end;
+
+procedure TMyBase.N37Click(Sender: TObject);
+begin
+  DM.Personal.Active:=False;
+  DM.Personal.Exclusive:=true;
+  DM.Personal.AddIndex('ndog','FIO_sotrydnika',[ixunique]);
+  DM.Personal.IndexName:='ndog';
+  DM.Personal.Exclusive:=false;
+  DM.Personal.Active:=true;
+end;
+
+procedure TMyBase.N38Click(Sender: TObject);
+begin
+  DM.Dolzhnosti.Active:=False;
+  DM.Dolzhnosti.Exclusive:=true;
+  DM.Dolzhnosti.AddIndex('ololo','Kod_dolzhnosti',[ixprimary]);
+  DM.Dolzhnosti.Exclusive:=false;
+  DM.Dolzhnosti.IndexFieldNames:='Kod_dolzhnosti';
+  DM.Dolzhnosti.Active:=true;
+end;
+
+procedure TMyBase.N32Click(Sender: TObject);
+begin
+  Zapros.show;
+  Zapros.QueryBox.ItemIndex:=-1;
+end;
+
+procedure TMyBase.N110Click(Sender: TObject);
+begin
+  DM.QRvProject.Close;
+  DM.QRvDataSetCon.DataSet:=DM.Bileti;
+  DM.QRvProject.ProjectFile:=ExtractFilePath(Application.Exename)+'OTCH1.rav';
+  DM.QRvProject.ExecuteReport('Report1');
+end;
+
+procedure TMyBase.N210Click(Sender: TObject);
+begin
+  DM.ZQuery.Active:=False;
+  DM.ZQuery.SQL.Clear;
+  DM.ZQuery.SQL.Add('SELECT COUNT(DISTINCT(Kod_sotrydnika)) FROM Bileti WHERE Data_prodazhi BETWEEN "01.01.2015" AND "31.12.2015"');
+  DM.ZQuery.Active:=True;
+  DM.QRvDataSetCon.DataSet:=DM.ZQuery;
+  DM.QRvProject.ProjectFile:=ExtractFilePath(Application.Exename)+'OTCH1.rav';
+  DM.QRvProject.ExecuteReport('Report2');
+end;
+
+procedure TMyBase.N39Click(Sender: TObject);
+begin
+  DM.ZQuery.Active:=False;
+  DM.ZQuery.SQL.Clear;
+  DM.ZQuery.SQL.Add('SELECT FIO_sotrydnika,Nazvanie_attrakciona,COUNT(DISTINCT(Nomer_bileta))');
+  DM.ZQuery.SQL.Add('FROM Personal, Dolzhnosti, Attrakcioni, Bileti');
+  DM.ZQuery.SQL.Add('WHERE (Bileti.Kod_attrakciona=Attrakcioni.Kod_attrakciona) AND (Personal.Kod_sotrydnika=Bileti.Kod_sotrydnika)');
+  DM.ZQuery.SQL.Add('GROUP BY FIO_sotrydnika,Nazvanie_attrakciona');
+  DM.ZQuery.Active:=True;
+  DM.QRvDataSetCon.DataSet:=DM.ZQuery;
+  DM.QRvProject.ProjectFile:=ExtractFilePath(Application.Exename)+'OTCH1.rav';
+  DM.QRvProject.ExecuteReport('Report3');
+end;
+
+procedure TMyBase.N8Click(Sender: TObject);
+begin
+  Log2.show;
+end;
+
+
+procedure TMyBase.N41Click(Sender: TObject);
+begin
+ SRCH.show;
+  SRCH.SSearch.Caption:='Дата продажи';
+  SRCH.E8.Text:='';
+  S:=5;
+end;
+
+procedure TMyBase.N43Click(Sender: TObject);
+begin
+ SRCH.show;
+  SRCH.SSearch.Caption:='ФИО сотрудника';
+  SRCH.E8.Text:='';
+  S:=3;
+end;
+
+procedure TMyBase.N45Click(Sender: TObject);
+begin
+ SRCH.show;
+  SRCH.SSearch.Caption:='Телефон';
+  SRCH.E8.Text:='';
+  S:=5;
+end;
+
+procedure TMyBase.N46Click(Sender: TObject);
+begin
+ SRCH.show;
+  SRCH.SSearch.Caption:='Год Рождения';
+  SRCH.E8.Text:='';
+  S:=6;
+end;
+
+procedure TMyBase.N47Click(Sender: TObject);
+begin
+ SRCH.show;
+  SRCH.SSearch.Caption:='Наименование должности';
+  SRCH.E8.Text:='';
+  S:=2;
+end;
+
+procedure TMyBase.N48Click(Sender: TObject);
+begin
+ SRCH.show;
+  SRCH.SSearch.Caption:='Оклад';
+  SRCH.E8.Text:='';
+  S:=3;
+end;
+
+procedure TMyBase.N49Click(Sender: TObject);
+begin
+ SRCH.show;
+  SRCH.SSearch.Caption:='Премия';
+  SRCH.E8.Text:='';
+  S:=4
+end;
+
+end.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+unit EDITBD;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, StdCtrls, Buttons;
+
+type
+  TBDEDIT = class(TForm)
+    E3: TEdit;
+    E4: TEdit;
+    E5: TEdit;
+    E6: TEdit;
+    E1: TEdit;
+    E2: TEdit;
+    SText1: TStaticText;
+    SText2: TStaticText;
+    SText3: TStaticText;
+    SText4: TStaticText;
+    SText5: TStaticText;
+    SText6: TStaticText;
+    BBtn6: TBitBtn;
+    BBtn7: TBitBtn;
+    SText7: TStaticText;
+    E7: TEdit;
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure BBtn6Click(Sender: TObject);
+    procedure BBtn8Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  BDEDIT: TBDEDIT;
+
+implementation
+
+uses Base1, DMBase;
+
+{$R *.dfm}
+
+procedure Float(var Key: Char);
+var allow:string;i:integer;ok:boolean;
+begin
+  allow:='1234567890-,'+#8;
+  ok:=false;
+  for i:=1 to length(allow)do
+  if key=allow[i]then ok:=true;
+  if not ok then key:=#0;
+end;
+
+
+procedure TBDEDIT.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  MyBase.Enabled:=true;
+end;
+
+procedure TBDEDIT.BBtn6Click(Sender: TObject);
+begin
+
+ if (E1.Text='') or (E2.Text='')
+   or (E3.Text='') or (E4.Text='') or (E5.Text='') or (E6.Text='')
+     or (E7.Text='') then
+      begin
+        MessageDlg('Поля пустые!',mterror,[mbok],0);
+        exit;
+      end
+  else
+  if MyBase.MyDBGrid1.Datasource=dm.BiletiSource then
+  begin
+    DM.Bileti.FieldByName('Nomer_bileta').Value:=E1.Text;
+    DM.Bileti.FieldByName('Kod_attrakciona').Value:=E2.Text;
+    DM.Bileti.FieldByName('Stoimost_bileta').Value:=E3.Text;
+    DM.Bileti.FieldByName('Kod_sotrydnika').Value:=E4.Text;
+    DM.Bileti.FieldByName('Data_prodazhi').Value:=E5.Text;
+    DM.Bileti.Post;
+    E1.Text:='';
+    E2.Text:='';
+    E3.Text:='';
+    E4.Text:='';
+    E5.Text:='';
+    BDEDIT.Close;
+  end
+  else if MyBase.MyDBGrid1.Datasource=dm.AttrakcioniSource then
+  begin
+    DM.Attrakcioni.FieldByName('Kod_attrakciona').Value:=E1.Text;
+    DM.Attrakcioni.FieldByName('Nazvanie_attrakciona').Value:=E2.Text;
+    DM.Attrakcioni.FieldByName('God_ystanovki').Value:=E3.Text;
+    DM.Attrakcioni.Post;
+    E1.Text:='';
+    E2.Text:='';
+    E3.Text:='';
+    BDEDIT.Close;
+  end
+  else if MyBase.MyDBGrid1.Datasource=dm.DolzhnostiSource then
+  begin
+    DM.Dolzhnosti.FieldByName('Kod_dolzhnosti').Value:=E1.Text;
+    DM.Dolzhnosti.FieldByName('Naimenovanie_dolzhnosti').Value:=E2.Text;
+    DM.Dolzhnosti.FieldByName('Oklad').Value:=E3.Text;
+    DM.Dolzhnosti.FieldByName('Premia').Value:=E4.Text;
+    DM.Dolzhnosti.Post;
+    E1.Text:='';
+    E2.Text:='';
+    E3.Text:='';
+    E4.Text:='';
+    BDEDIT.Close;
+  end
+  else if MyBase.MyDBGrid1.Datasource=dm.PersonalSource then
+  begin
+    DM.Personal.FieldByName('Kod_sotrydnika').Value:=E1.Text;
+    DM.Personal.FieldByName('Kod_dolzhnosti').Value:=E2.Text;
+    DM.Personal.FieldByName('FIO_sotrydnika').Value:=E3.Text;
+    DM.Personal.FieldByName('Adres_sotrydnika').Value:=E4.Text;
+    DM.Personal.FieldByName('Telefon').Value:=E5.Text;
+    DM.Personal.FieldByName('God_Rozhdenia').Value:=E6.Text;
+    DM.Personal.Post;
+    E1.Text:='';
+    E2.Text:='';
+    E3.Text:='';
+    E4.Text:='';
+    E5.Text:='';
+    E6.Text:='';
+  end;
+
+  
+end;
+
+procedure TBDEDIT.BBtn8Click(Sender: TObject);
+begin
+ if (E1.Text='') or (E2.Text='')
+   or (E3.Text='') or (E4.Text='') or (E5.Text='') or (E6.Text='')
+     or (E7.Text='') then
+      begin
+        MessageDlg('Поля пустые!',mterror,[mbok],0);
+        exit;
+      end
+  else
+  if MyBase.MyDBGrid1.Datasource=dm.BiletiSource then
+  begin
+    DM.Bileti.Edit;
+    DM.Bileti.FieldByName('Nomer_bileta').Value:=E1.Text;
+    DM.Bileti.FieldByName('Kod_attrakciona').Value:=E2.Text;
+    DM.Bileti.FieldByName('Stoimost_bileta').Value:=E3.Text;
+    DM.Bileti.FieldByName('Kod_sotrydnika').Value:=E4.Text;
+    DM.Bileti.FieldByName('Data_prodazhi').Value:=E5.Text;
+    DM.Bileti.Post;
+    E1.Text:='';
+    E2.Text:='';
+    E3.Text:='';
+    E4.Text:='';
+    E5.Text:='';
+    BDEDIT.Close;
+  end
+  else
+  if MyBase.MyDBGrid1.Datasource=dm.AttrakcioniSource then
+  begin
+    DM.Attrakcioni.Edit;
+    DM.Attrakcioni.FieldByName('Kod_attrakciona').Value:=E1.Text;
+    DM.Attrakcioni.FieldByName('Nazvanie_attrakciona').Value:=E2.Text;
+    DM.Attrakcioni.FieldByName('God_ystanovki').Value:=E3.Text;
+    BDEDIT.Close;
+  end
+  else
+  if MyBase.MyDBGrid1.Datasource=dm.DolzhnostiSource then
+  begin
+    DM.Dolzhnosti.Edit;
+    DM.Dolzhnosti.FieldByName('Kod_dolzhnosti').Value:=E1.Text;
+    DM.Dolzhnosti.FieldByName('Naimenovanie_dolzhnosti').Value:=E2.Text;
+    DM.Dolzhnosti.FieldByName('Oklad').Value:=E3.Text;
+    DM.Dolzhnosti.FieldByName('Premia').Value:=E4.Text;
+    BDEDIT.Close;
+  end
+  else
+  if MyBase.MyDBGrid1.Datasource=dm.PersonalSource then
+  begin
+    DM.Personal.Edit;
+    DM.Personal.FieldByName('Kod_sotrydnika').Value:=E1.Text;
+    DM.Personal.FieldByName('Kod_dolzhnosti').Value:=E2.Text;
+    DM.Personal.FieldByName('FIO_sotrydnika').Value:=E3.Text;
+    DM.Personal.FieldByName('Adres_sotrydnika').Value:=E4.Text;
+    DM.Personal.FieldByName('Telefon').Value:=E5.Text;
+    DM.Personal.FieldByName('God_Rozhdenia').Value:=E6.Text;
+    BDEDIT.Close;
+  end;
+end;
+
+end.
+
+
+
+
+
+
+
+unit DMBase;
+
+interface
+
+uses
+  SysUtils, Classes, DB, DBTables, RpCon, RpConDS, RpDefine, RpRave,
+  RpBase, RpSystem;
+
+type
+  TDM = class(TDataModule)
+    AttrakcioniSource: TDataSource;
+    BiletiSource: TDataSource;
+    DolzhnostiSource: TDataSource;
+    PersonalSource: TDataSource;
+    Dolzhnosti: TTable;
+    Personal: TTable; 
+    ZQuery: TQuery;
+    QuerySource: TDataSource;
+    QRvProject: TRvProject;
+    QRvDataSetCon: TRvDataSetConnection;
+    Attrakcioni: TTable;
+    DolzhnostiZarplata: TIntegerField;
+    DolzhnostiKod_dolzhnosti: TStringField;
+    DolzhnostiNaimenovanie_dolzhnosti: TStringField;
+    DolzhnostiOklad: TStringField;
+    DolzhnostiPremia: TStringField;
+    PersonalKod_sotrydnika: TStringField;
+    PersonalKod_dolzhnosti: TStringField;
+    PersonalFIO_sotrydnika: TStringField;
+    PersonalAdres_sotrydnika: TStringField;
+    PersonalTelefon: TStringField;
+    PersonalGod_Rozhdenia: TStringField;
+    AttrakcioniKod_attrakciona: TStringField;
+    AttrakcioniNazvanie_attrakciona: TStringField;
+    AttrakcioniGod_ystanovki: TStringField;
+    Bileti: TTable;
+    BiletiNomer_bileta: TStringField;
+    BiletiKod_attrakciona: TStringField;
+    BiletiStoimost_bileta: TCurrencyField;
+    BiletiKod_sotrydnika: TStringField;
+    BiletiData_prodazhi: TDateField;
+    RvSystem1: TRvSystem;
+    procedure DolzhnostiCalcFields(DataSet: TDataSet);
+  
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  DM: TDM;
+
+implementation
+
+uses Base1;
+
+{$R *.dfm}
+
+
+
+procedure TDM.DolzhnostiCalcFields(DataSet: TDataSet);
+begin
+DolzhnostiZarplata.Value:= StrToInt(DolzhnostiOklad.Value) + StrToInt(DolzhnostiPremia.Value);
+end;
+
+end.
+
+
+
+
+
+
+
+
+
+
+unit L2;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, jpeg, ExtCtrls, StdCtrls, Buttons, math;
+
+type
+  TLOG2 = class(TForm)
+    IMG: TImage;
+    STE: TStaticText;
+    BitBtn1: TBitBtn;
+    procedure BitBtn1Click(Sender: TObject);
+    procedure FormActivate(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  LOG2: TLOG2;
+  z:integer;
+
+implementation
+
+{$R *.dfm}
+
+procedure TLOG2.BitBtn1Click(Sender: TObject);
+begin
+  Log2.Close;
+end;
+
+procedure TLOG2.FormActivate(Sender: TObject);
+begin
+  z:=0;
+end;
+
+end.
+
+
+
+
+
+
+
+unit MAin1;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, ExtCtrls, jpeg, StdCtrls, Buttons;
+
+type
+  TMain = class(TForm)
+    Imag: TImage;
+    B1: TBitBtn;
+    B2: TBitBtn;
+    B3: TBitBtn;
+    procedure B1Click(Sender: TObject);
+    procedure B2Click(Sender: TObject);
+    procedure B3Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Main: TMain;
+
+implementation
+
+uses Base1;
+
+{$R *.dfm}
+
+procedure TMain.B1Click(Sender: TObject);
+begin
+  Mybase.show;
+end;
+
+procedure TMain.B2Click(Sender: TObject);
+begin
+  messagedlg('Палачанин Алексей ПО-21',mtinformation,[mbok],0);
+end;
+
+procedure TMain.B3Click(Sender: TObject);
+begin
+  main.close;
+end;
+
+end.
+
+
+
+
+
+
+
+
+
+unit SEARCH;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, StdCtrls, Buttons;
+
+type
+  TSRCH = class(TForm)
+    E8: TEdit;
+    BBtn8: TBitBtn;
+    BBtn9: TBitBtn;
+    CBox1: TCheckBox;
+    Ssearch: TStaticText;
+    procedure BBtn8Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  SRCH: TSRCH;
+
+implementation
+
+uses Base1, DMBase;
+
+{$R *.dfm}
+
+procedure TSRCH.BBtn8Click(Sender: TObject);
+begin
+  SRCH.E8.Focused;
+  if E8.Text='' then
+      begin
+        MessageDlg('Поля пустые!',mterror,[mbok],0);
+        exit;
+      end
+  else
+  begin
+    
+  
+  //BILETI
+  if MyBase.MyDBGrid1.Datasource=dm.BiletiSource then
+  begin
+    //Nomer_bileta
+    if s=1 then
+    begin
+      If DM.Bileti.Locate('Nomer_bileta',E8.Text,[])=false then
+        begin
+          MessageDlg('Нет такой записи!',mtConfirmation,[mbOk],0);
+          Exit;
+        end;
+      if SRCH.CBox1.Checked=False then
+      DM.Bileti.Locate('Nomer_bileta',SRCH.E8.Text,[])
+      else
+      begin
+        DM.Bileti.Filtered:=true;
+        DM.Bileti.Filter:='Nomer_bileta'+'='+E8.Text;
+      end;
+    end
+    else
+    //Kod_attrakciona
+    if s=2 then
+    begin
+      If DM.Bileti.Locate('Kod_attrakciona',E8.Text,[])=false then
+        begin
+          MessageDlg('Нет такой записи!',mtConfirmation,[mbOk],0);
+          Exit;
+        end;
+      if SRCH.CBox1.Checked=False then
+      DM.Bileti.Locate('Kod_attrakciona',SRCH.E8.Text,[])
+      else
+      begin
+        DM.Bileti.Filtered:=true;
+        DM.Bileti.Filter:='Kod_attrakciona'+'='+E8.Text;
+      end;
+    end
+    else
+    //Stoimost_bileta
+    if s=3 then
+    begin
+      If DM.Bileti.Locate('Stoimost_bileta',E8.Text,[])=false then
+        begin
+          MessageDlg('Нет такой записи!',mtConfirmation,[mbOk],0);
+          Exit;
+        end;
+      if SRCH.CBox1.Checked=False then
+      DM.Bileti.Locate('Stoimost_bileta',SRCH.E8.Text,[])
+      else
+      begin
+        DM.Bileti.Filtered:=true;
+        DM.Bileti.Filter:='Stoimost_bileta'+'='+E8.Text;
+      end;
+    end
+    else
+    //Kod_sotrydnika
+    if s=4 then
+    begin
+      If DM.Bileti.Locate('Kod_sotrydnika',E8.Text,[])=false then
+        begin
+          MessageDlg('Нет такой записи!',mtConfirmation,[mbOk],0);
+          Exit;
+        end;
+      if SRCH.CBox1.Checked=False then
+      DM.Bileti.Locate('Kod_sotrydnika',SRCH.E8.Text,[])
+      else
+      begin
+        DM.Bileti.Filtered:=true;
+        DM.Bileti.Filter:='Kod_sotrydnika'+'='+E8.Text;
+      end;
+    end;
+    //Data_prodazhi
+    if s=5 then
+    begin
+      If DM.Bileti.Locate('Data_prodazhi',E8.Text,[])=false then
+        begin
+          MessageDlg('Нет такой записи!',mtConfirmation,[mbOk],0);
+          Exit;
+        end;
+      if SRCH.CBox1.Checked=False then
+      DM.Bileti.Locate('Data_prodazhi',SRCH.E8.Text,[])
+      else
+      begin
+        DM.Bileti.Filtered:=true;
+        DM.Bileti.Filter:='Data_prodazhi'+'='+E8.Text;
+      end;
+    end
+
+  end
+
+    
+  else
+    //PERSONAL
+  if MyBase.MyDBGrid1.Datasource=dm.PersonalSource then
+  begin
+
+    //Kod_sotrydnika
+    if s=1 then
+    begin
+      If DM.Personal.Locate('Kod_sotrydnika',E8.Text,[])=false then
+        begin
+          MessageDlg('Нет такой записи!',mtConfirmation,[mbOk],0);
+          Exit;
+        end;
+      if SRCH.CBox1.Checked=False then
+      DM.Personal.Locate('Kod_sotrydnika',SRCH.E8.Text,[])
+      else
+      begin
+        DM.Personal.Filtered:=true;
+        DM.Personal.Filter:='Kod_sotrydnika'+'='+E8.Text;
+      end;
+    end;
+    //Kod_dolzhnosti
+     if s=2 then
+    begin
+      If DM.Personal.Locate('Kod_dolzhnosti',E8.Text,[])=false then
+        begin
+          MessageDlg('Нет такой записи!',mtConfirmation,[mbOk],0);
+          Exit;
+        end;
+      if SRCH.CBox1.Checked=False then
+      DM.Personal.Locate('Kod_dolzhnosti',SRCH.E8.Text,[])
+      else
+      begin
+        DM.Personal.Filtered:=true;
+        DM.Personal.Filter:='Kod_dolzhnosti'+'='+E8.Text;
+      end;
+    end;
+    //FIO_sotrydnika
+    if s=3 then
+    begin
+      If DM.Personal.Locate('FIO_sotrydnika',E8.Text,[])=false then
+        begin
+          MessageDlg('Нет такой записи!',mtConfirmation,[mbOk],0);
+          Exit;
+        end;
+      if SRCH.CBox1.Checked=False then
+      DM.Personal.Locate('FIO_sotrydnika',SRCH.E8.Text,[])
+      else
+      begin
+        DM.Personal.Filtered:=true;
+        DM.Personal.Filter:='FIO_sotrydnika'+'='+E8.Text;
+      end;
+    end;
+    //Adres_sotrydnika
+    if s=4 then
+    begin
+      If DM.Personal.Locate('Adres_sotrydnika',E8.Text,[])=false then
+        begin
+          MessageDlg('Нет такой записи!',mtConfirmation,[mbOk],0);
+          Exit;
+        end;
+      if SRCH.CBox1.Checked=False then
+      DM.Personal.Locate('Adres_sotrydnika',SRCH.E8.Text,[])
+      else
+      begin
+        DM.Personal.Filtered:=true;
+        DM.Personal.Filter:='Adres_sotrydnika'+'='+E8.Text;
+      end;
+    end;
+    //Telefon
+    if s=5 then
+    begin
+      If DM.Personal.Locate('Telefon',E8.Text,[])=false then
+        begin
+          MessageDlg('Нет такой записи!',mtConfirmation,[mbOk],0);
+          Exit;
+        end;
+      if SRCH.CBox1.Checked=False then
+      DM.Personal.Locate('Telefon',SRCH.E8.Text,[])
+      else
+      begin
+        DM.Personal.Filtered:=true;
+        DM.Personal.Filter:='Telefon'+'='+E8.Text;
+      end;
+    end;
+    //God_Rozhdenia
+    if s=6 then
+    begin
+      If DM.Personal.Locate('God_Rozhdenia',E8.Text,[])=false then
+        begin
+          MessageDlg('Нет такой записи!',mtConfirmation,[mbOk],0);
+          Exit;
+        end;
+      if SRCH.CBox1.Checked=False then
+      DM.Personal.Locate('God_Rozhdenia',SRCH.E8.Text,[])
+      else
+      begin
+        DM.Personal.Filtered:=true;
+        DM.Personal.Filter:='God_Rozhdenia'+'='+E8.Text;
+      end;
+    end
+
+  end
+
+    else
+    //ATTRAKCIONI
+  if MyBase.MyDBGrid1.Datasource=dm.AttrakcioniSource then
+  begin
+  //Kod_attrakciona
+    if s=1 then
+    begin
+      If DM.Attrakcioni.Locate('Kod_attrakciona',E8.Text,[])=false then
+        begin
+          MessageDlg('Нет такой записи!',mtConfirmation,[mbOk],0);
+          Exit;
+        end;
+      if SRCH.CBox1.Checked=False then
+      DM.Attrakcioni.Locate('Kod_attrakciona',SRCH.E8.Text,[])
+      else
+      begin
+        DM.Attrakcioni.Filtered:=true;
+        DM.Attrakcioni.Filter:='Kod_attrakciona'+'='+E8.Text;
+      end;
+    end
+    else
+  //Nazvanie_attrakciona
+    if s=2 then
+    begin
+      If DM.Attrakcioni.Locate('Nazvanie_attrakciona',E8.Text,[])=false then
+        begin
+          MessageDlg('Нет такой записи!',mtConfirmation,[mbOk],0);
+          Exit;
+        end;
+      if SRCH.CBox1.Checked=False then
+      DM.Attrakcioni.Locate('Nazvanie_attrakciona',SRCH.E8.Text,[])
+      else
+      begin
+        DM.Attrakcioni.Filtered:=true;
+        DM.Attrakcioni.Filter:='Nazvanie_attrakciona'+'='+E8.Text;
+      end;
+    end
+    else
+  //God_ystanovki
+    if s=3 then
+    begin
+      If DM.Attrakcioni.Locate('God_ystanovki',E8.Text,[])=false then
+        begin
+          MessageDlg('Нет такой записи!',mtConfirmation,[mbOk],0);
+          Exit;
+        end;
+      if SRCH.CBox1.Checked=False then
+      DM.Attrakcioni.Locate('God_ystanovki',SRCH.E8.Text,[])
+      else
+      begin
+        DM.Attrakcioni.Filtered:=true;
+        DM.Attrakcioni.Filter:='God_ystanovki'+'='+E8.Text;
+      end;
+    end
+  end
+  else
+  //DOLZHNOSTI
+  if MyBase.MyDBGrid1.Datasource=dm.DolzhnostiSource then
+  begin
+
+    //Kod_dolzhnosti
+    if s=1 then
+    begin
+      If DM.Dolzhnosti.Locate('Kod_dolzhnosti',E8.Text,[])=false then
+        begin
+          MessageDlg('Нет такой записи!',mtConfirmation,[mbOk],0);
+          Exit;
+        end;
+      if SRCH.CBox1.Checked=False then
+      DM.Dolzhnosti.Locate('Kod_dolzhnosti',SRCH.E8.Text,[])
+      else
+      begin
+        DM.Dolzhnosti.Filtered:=true;
+        DM.Dolzhnosti.Filter:='Kod_dolzhnosti'+'='+E8.Text;
+      end;
+    end;
+    //Naimenovanie_dolzhnosti
+    if s=2 then
+    begin
+      If DM.Personal.Locate('Naimenovanie_dolzhnosti',E8.Text,[])=false then
+        begin
+          MessageDlg('Нет такой записи!',mtConfirmation,[mbOk],0);
+          Exit;
+        end;
+      if SRCH.CBox1.Checked=False then
+      DM.Personal.Locate('Naimenovanie_dolzhnosti',SRCH.E8.Text,[])
+      else
+      begin
+        DM.Personal.Filtered:=true;
+        DM.Personal.Filter:='Naimenovanie_dolzhnosti'+'='+E8.Text;
+      end;
+    end;
+    //Oklad
+    if s=3 then
+    begin
+      If DM.Personal.Locate('Oklad',E8.Text,[])=false then
+        begin
+          MessageDlg('Нет такой записи!',mtConfirmation,[mbOk],0);
+          Exit;
+        end;
+      if SRCH.CBox1.Checked=False then
+      DM.Personal.Locate('Oklad',SRCH.E8.Text,[])
+      else
+      begin
+        DM.Personal.Filtered:=true;
+        DM.Personal.Filter:='Oklad'+'='+E8.Text;
+      end;
+    end;
+    //Premia
+    if s=4 then
+    begin
+      If DM.Personal.Locate('Premia',E8.Text,[])=false then
+        begin
+          MessageDlg('Нет такой записи!',mtConfirmation,[mbOk],0);
+          Exit;
+        end;
+      if SRCH.CBox1.Checked=False then
+      DM.Personal.Locate('Premia',SRCH.E8.Text,[])
+      else
+      begin
+        DM.Personal.Filtered:=true;
+        DM.Personal.Filter:='Premia'+'='+E8.Text;
+      end;
+    end
+
+  end;
+
+  ////>>>>>>>LASTENDDDDDDDDDDDDDD
+  end;
+  SRCH.Close;
+
+
+end;
+
+end.
+
+
+
+
+
+
+
+unit Zaprosi;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, Grids, DBGrids, StdCtrls, Buttons;
+
+type
+  TZapros = class(TForm)
+    QueryTable: TDBGrid;
+    QueryEdit: TEdit;
+    QueryBox: TComboBox;
+    BitBtn1: TBitBtn;
+    BitBtn2: TBitBtn;
+    QSText: TStaticText;
+    ADEdit: TEdit;
+    procedure BitBtn2Click(Sender: TObject);
+    procedure QueryBoxChange(Sender: TObject);
+    procedure BitBtn1Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Zapros: TZapros;
+
+implementation
+
+uses DMBase;
+
+{$R *.dfm}
+
+procedure TZapros.BitBtn2Click(Sender: TObject);
+begin
+  Zapros.close;
+end;
+
+procedure TZapros.QueryBoxChange(Sender: TObject);
+begin
+  ADEDIT.Visible:=False;
+  ADEDIT.Text:='';
+  QueryEdit.Visible:=false;
+  If QUERYBOX.ItemIndex=3 then
+  begin
+    DM.ZQuery.Active:=False;
+    QSTEXT.Caption:='Подсчитать количество сотрудников в лунопарке, продавших билеты в прошлом году.';
+    DM.ZQuery.SQL.Clear;
+    DM.ZQuery.SQL.Add('SELECT COUNT(DISTINCT(Kod_sotrydnika)) FROM Bileti WHERE Data_prodazhi BETWEEN "01.01.2015" AND "31.12.2015"');
+    DM.ZQuery.Active:=True;
+  end
+  else
+  If QUERYBOX.ItemIndex=4 then
+  begin
+    DM.ZQuery.Active:=False;
+    QSTEXT.Caption:='Выдать список аттракционов (название аттракциона, год установки), с указанием суммарного количества проданных на них билетов в августе 2011 года.';
+    DM.ZQuery.SQL.Clear;
+    DM.ZQuery.SQL.Add('SELECT Nazvanie_attrakciona, God_ystanovki, COUNT(*) FROM Attrakcioni, Bileti WHERE Attrakcioni.Kod_attrakciona=Bileti.Kod_attrakciona AND Data_prodazhi BETWEEN "01.08.2011" AND "31.08.2011" GROUP BY Nazvanie_attrakciona, God_ystanovki');
+    DM.ZQuery.Active:=True;
+  end
+  else
+  If QUERYBOX.ItemIndex=5 then
+  begin
+    DM.ZQuery.Active:=False;
+    QSTEXT.Caption:='Выдать список сотрудников(ФИО, Адрес, Год Рождения, Должность), у которых не указан телефон.';
+    DM.ZQuery.SQL.Clear;
+    DM.ZQuery.SQL.Add('SELECT FIO_sotrydnika, Adres_sotrydnika, God_Rozhdenia, Naimenovanie_dolzhnosti FROM Personal, Dolzhnosti WHERE Personal.Kod_dolzhnosti=Dolzhnosti.Kod_dolzhnosti AND Telefon is NULL');
+    DM.ZQuery.Active:=True;
+  end
+  else
+  If QUERYBOX.ItemIndex=6 then
+  begin
+    DM.ZQuery.Active:=False;
+    QSTEXT.Caption:='Выдать список сотрудников(ФИО, Адрес,Телефон, Год Рождения, Должность) с указанием суммарного стоимости проданных билетов(каждым сотрудником) в мае 2010г .';
+    DM.ZQuery.SQL.Clear;
+    DM.ZQuery.SQL.Add('SELECT FIO_sotrydnika,Adres_sotrydnika,Telefon,God_Rozhdenia, Naimenovanie_dolzhnosti, SUM(Stoimost_bileta)');
+    DM.ZQuery.SQL.Add('FROM Personal, Dolzhnosti, Bileti');
+    DM.ZQuery.SQL.Add('WHERE (Personal.Kod_dolzhnosti=Dolzhnosti.Kod_dolzhnosti) AND (Personal.Kod_sotrydnika=Bileti.Kod_sotrydnika) AND Data_prodazhi BETWEEN "01.05.2010" AND "31.05.2010"');
+    DM.ZQuery.SQL.Add('GROUP BY FIO_sotrydnika,Adres_sotrydnika,Telefon,God_Rozhdenia, Naimenovanie_dolzhnosti');
+    DM.ZQuery.Active:=True;
+  end
+  else
+  If QUERYBOX.ItemIndex=7 then
+  begin
+    DM.ZQuery.Active:=False;
+    QSTEXT.Caption:='Выдать список сотрудников(ФИО), с указанием названия аттракциона, на который они продали билеты, суммарного количества проданных билетов на данный аттракцион.';
+    DM.ZQuery.SQL.Clear;
+    DM.ZQuery.SQL.Add('SELECT FIO_sotrydnika,Nazvanie_attrakciona,COUNT(DISTINCT(Nomer_bileta))');
+    DM.ZQuery.SQL.Add('FROM Personal, Dolzhnosti, Attrakcioni, Bileti');
+    DM.ZQuery.SQL.Add('WHERE (Bileti.Kod_attrakciona=Attrakcioni.Kod_attrakciona) AND (Personal.Kod_sotrydnika=Bileti.Kod_sotrydnika)');
+    DM.ZQuery.SQL.Add('GROUP BY FIO_sotrydnika,Nazvanie_attrakciona');
+    DM.ZQuery.Active:=True;
+  end
+  else
+  If QUERYBOX.ItemIndex=0 then
+  begin
+    DM.ZQuery.Active:=False;
+    QueryEdit.Visible:=True;
+    QSTEXT.Caption:='Выдать список сотрудников(ФИО, Адрес, Телефон, Должность), продавших билеты на указанный аттракцион.';
+  end
+  else
+  If QUERYBOX.ItemIndex=1 then
+  begin
+    DM.ZQuery.Active:=False;
+    QueryEdit.Visible:=True;
+    QSTEXT.Caption:='По введенному названию должности выдать количество работников, занимающих ее.';
+  end
+  else
+  If QUERYBOX.ItemIndex=2 then
+  begin
+    DM.ZQuery.Active:=False;
+    QueryEdit.Visible:=True;
+    QSTEXT.Caption:='Выдать информацию о сотруднике(ФИО, Адрес, Телефон, Год Рождения, Должность) по введенному номеру билета.';
+  end;
+
+
+////////////>>>>>>>>>>LASTEND
+end;
+
+procedure TZapros.BitBtn1Click(Sender: TObject);
+begin
+    DM.ZQuery.Active:=False;
+    DM.ZQuery.SQL.Clear;
+    If QUERYBOX.ItemIndex=0 then
+    begin
+      DM.ZQuery.Params.Clear;
+      DM.ZQuery.SQL.Add('SELECT FIO_sotrydnika,Adres_sotrydnika,Telefon,Naimenovanie_dolzhnosti');
+      DM.ZQuery.SQL.Add('FROM Personal, Dolzhnosti, Attrakcioni, Bileti');
+      DM.ZQuery.SQL.Add('WHERE (Personal.Kod_dolzhnosti=Dolzhnosti.Kod_dolzhnosti) AND (Personal.Kod_sotrydnika=Bileti.Kod_sotrydnika) AND (Attrakcioni.Kod_attrakciona=Bileti.Kod_attrakciona) AND (Attrakcioni.Nazvanie_attrakciona=:PPOB)');
+      DM.ZQuery.Params[0].Asstring:=(QueryEdit.Text);
+      DM.ZQuery.Active:=True;
+    end
+    else
+    If QUERYBOX.ItemIndex=1 then
+    begin
+      DM.ZQuery.Params.Clear;
+      DM.ZQuery.SQL.Add('SELECT COUNT(Personal.Kod_dolzhnosti)');
+      DM.ZQuery.SQL.Add('FROM Dolzhnosti, Personal');
+      DM.ZQuery.SQL.Add('WHERE (Personal.Kod_dolzhnosti=Dolzhnosti.Kod_dolzhnosti) AND (Dolzhnosti.Naimenovanie_dolzhnosti=:PPOC)');
+      DM.ZQuery.Params[0].Asstring:=(QueryEdit.Text);
+      DM.ZQuery.Active:=True;
+    end
+    else
+    If QUERYBOX.ItemIndex=2 then
+    begin
+      DM.ZQuery.Params.Clear;
+      DM.ZQuery.SQL.Add('SELECT FIO_sotrydnika, Adres_sotrydnika, Telefon, God_Rozhdenia, Naimenovanie_dolzhnosti');
+      DM.ZQuery.SQL.Add('FROM Personal, Dolzhnosti, Bileti');
+      DM.ZQuery.SQL.Add('WHERE (Personal.Kod_dolzhnosti=Dolzhnosti.Kod_dolzhnosti) AND (Personal.Kod_sotrydnika=Bileti.Kod_sotrydnika) AND (Bileti.Nomer_bileta=:L1)');
+      DM.ZQuery.Params[0].Asstring:=(QueryEdit.Text);
+      DM.ZQuery.Active:=True;
+    end;
+end;
+
+end.
