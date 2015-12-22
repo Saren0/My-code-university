@@ -1,0 +1,41 @@
+Program palachanin24;
+const
+  LIM=99; W=8; D=2; n=4;
+Var
+  a: array [1..n, 1..n] of real;
+  t: real;
+  i, j: integer;
+  swp1, swp2: boolean;
+begin
+  Randomize;
+  WriteLn('A =');
+  for i:=1 to n do begin
+    for j:=1 to n do begin
+      a[i,j]:=Random*LIM; Write(a[i,j]:W:D);
+    end; WriteLn;
+  end;
+  for j:=1 to n do begin
+     swp2:=true;
+    for i:=2 to n do
+      if a[i-1,j]<a[i,j] then begin
+        swp2:=false; break
+      end;
+    if swp2 then Write('да':W)
+    else begin
+      Write('нет':W);
+      repeat
+        swp1:=true;
+        for i:=2 to n do
+          if a[i-1,j]<a[i,j] then begin
+            swp1:=false;
+            t:=a[i-1,j]; a[i-1,j]:=a[i,j]; a[i,j]:=t;
+          end;
+      until swp1;
+    end;
+  end; WriteLn;
+  WriteLn('A'' =');
+  for i:=1 to n do begin
+    for j:=1 to n do Write(a[i,j]:W:D);
+    WriteLn;
+  end;
+end.
