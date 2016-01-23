@@ -1,0 +1,212 @@
+Составить и отладить программу на языке ассемблера для работы с одномерными массивами. 
+Написать 2 программы:
+С использованием программ ввода и вывода. Размерность вектора и элементы вектора вводятся с клавиатуры, полученные результаты выводятся на экран.
+	Если максимальный элемент вектора больше 10, то все отрицательные элементы обнулить.
+	
+	masm
+model small
+extrn disp:near, VVOD:near
+.data
+	minus db -1
+	max db 0
+	N dw 0
+        mas db 10 dup(0)
+        mes db 'BBEDUTE N-> $'
+        mes2 db 'BBEDUTE BEKTOP-> $'
+        mes3 db ' END....$'
+	mes4 db 'Ishodni Vektor$' 
+        mes5 db 10,13,'$'     ; переход на новую строку   
+        mes6 db ' $'  ; пробел 
+.stack
+        db 30 dup (0)
+.code
+        osn proc near
+        mov ax, @data
+        mov ds, ax
+        lea dx, mes
+        mov ax,0900H
+        int 21h
+        call vvod
+        mov al, bl
+        cbw
+        mov N, ax
+        mov cx, N
+        mov di, 0
+vvodloop:
+        lea dx, mes2
+        mov ax,0900H
+        int 21h
+        call vvod
+        mov mas[di], bl
+        inc di
+loop vvodloop
+;-----------------------------
+	lea dx,mes4 
+;исходный вектор  
+  mov ax,0900h  
+  int 21h  
+  lea dx,mes5
+ ;переход на новую строку   
+ mov ax,0900h  
+  int 21h  
+  mov cx,n    
+     mov di,0 
+  zikl2:      mov al, mas[di]  
+  cbw  
+  call disp  
+  lea dx,mes6 
+;пробел   
+ mov ax,0900h 
+   int 21h   
+ inc di   
+ loop zikl2 	
+;-----------------------------
+        mov di, 0
+        mov cx, N
+	mov bl, 2
+	mov al, mas
+zikl:  
+        cmp al,mas[di]  
+        jg m1  
+        mov al, mas[di] 
+m1:
+        inc di  
+        loop zikl  
+        mov max, al
+;--------------
+        mov al,max
+        cmp al,10
+        jg f1
+        
+f1: 
+        cmp mas[di], 0
+        jge f2
+        mov mas[di], 0
+f2: 
+        inc di
+        loop f1 
+        mov al,mas[di]	
+;-----------------------------
+        ;исходный вектор  
+  mov ax,0900h  
+  int 21h  
+  lea dx,mes5
+ ;переход на новую строку   
+ mov ax,0900h  
+  int 21h  
+  mov cx,n    
+     mov di,0 
+  zikl22:      mov al, mas[di]  
+  cbw  
+  call disp  
+  lea dx,mes6 
+;пробел   
+ mov ax,0900h 
+   int 21h   
+ inc di   
+ loop zikl22 	  
+  	lea dx,mes3
+        mov ax,0900H
+        int 21H
+        mov ax,4C00H
+        int 21H
+        osn endp
+end osn
+
+masm
+model small
+public vvod
+.data
+mes   db 'ЏҐаҐЇ®«­Ґ­ЁҐ'
+mes1  db '',10,13,'$'
+mes2  db 'ЋиЁЎЄ  ўў®¤ ',10,13,'$'
+.code
+vvod  proc near
+      mov ax,@data
+      mov ds,ax
+      push ax
+      push cx
+      push dx
+      push si
+      push di
+      push bp
+      maska=00001111b
+      mov bx,0
+      mov cx,10
+      mov si,0
+      mov di,1
+      mov bp,1
+met4: mov ax,0800h
+      int 21h
+      cmp al,0dh
+      je met1
+      cmp si,0
+      jne met2
+      cmp al,2dh
+      jne met3
+      mov dl,2dh
+      mov di,0
+met6: mov ax,0200h
+      int 21h
+      mov si,1
+      mov bp,0
+      jmp met4
+met3: cmp al,2bh
+      jne met2
+      mov dl,2bh
+      jmp met6
+met2: cmp al,30h
+      jae met5
+met7: mov dl,07h
+      mov ax,0200h
+      int 21h
+      jmp met4
+met5: cmp al,39h
+      ja met7
+      mov dl,al
+      mov ax,0200h
+      int 21h
+      mov bp,1
+      mov si,1
+      and al,maska
+      cbw
+      push ax
+      mov ax,bx
+      cwd
+      imul cx
+      jo met11
+      mov bx,ax
+      pop ax
+      cmp di,1
+      je met9
+      neg ax
+met9: add bx,ax
+      jno met4
+met11:lea dx,mes1
+      mov ax,0900h
+      int 21h
+      lea dx,mes
+      mov ax,0900h
+      int 21h
+      jmp stop
+met1: cmp bp,1
+      je met10
+      lea dx,mes1
+      mov ax,0900h
+      int 21h
+      lea dx,mes2
+      mov ax,0900h
+      int 21h
+      jmp stop
+met10:lea dx,mes1
+      mov ax,0900h
+      int 21h
+stop: pop bp
+      pop di
+      pop si
+      pop dx
+      pop cx
+      pop ax
+      ret
+vvod  endp
+      end
