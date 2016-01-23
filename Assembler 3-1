@@ -1,0 +1,52 @@
+Составить и отладить программу на языке ассемблера для работы с одномерными массивами. 
+Написать 2 программы:
+1. Без использования программ ввода и вывода. Исходные данные задаются в программе. Результаты помещаются в переменные. 
+	Если максимальный элемент вектора больше 10, то все отрицательные элементы обнулить.
+	
+	masm
+model small
+.data
+	mas db -1,3,5,11,-7
+        max db 0
+	minus db -1
+	N dw 5
+.stack
+        db 30 dup (0)
+.code
+        osn proc near
+        mov ax, @data
+        mov ds, ax
+;-----------------------------
+        mov di, 0
+        mov cx, N
+	mov bl, 2
+	mov al, mas
+zikl:  
+        cmp al,mas[di]  
+        jg m1  
+        mov al, mas[di] 
+m1:
+        inc di  
+        loop zikl  
+        mov max, al
+;--------------
+	mov cx, N
+        mov al,max
+        cmp al,10
+        jg f1
+        
+f1: 
+        cmp mas[di], 0
+        jge f2
+        mov mas[di], 0
+f2: 
+        inc di
+        loop f1 
+        mov al,mas[di]	
+;-----------------------------
+       	mov ax,0900H
+        int 21H
+        mov ax,4C00H
+        int 21H
+        osn endp
+end osn
