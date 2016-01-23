@@ -1,0 +1,115 @@
+Составить и отладить программу на языке ассемблера для вычисления значения функции, используя регистры сопроцессора. Написать 2 варианта программы:
+с использованием вещественных команд сопроцессора.
+Программу протестировать по всем условиям.
+
+
+
+masm
+model use16 small
+.stack 100h
+.386p
+;Тесты
+; 1 ветка
+; x = 4 
+; y = 4
+; Результат = 51
+; 2 ветка
+; x = -12 
+; y = 1
+; Результат = 0
+; 3 ветка
+; x = 1
+; y = 1
+; Результат = 2
+.data
+	x dd 4.0
+	y dd 4.0
+	f dd ?
+	four dd 4.0
+	seven dd 7.0
+	three dd 3.0
+	two dd 2.0
+	mten dd -10.0
+	one dd 1.0
+	xy dd ?
+	te dw ?
+	tmp dd ?
+	mes db 'F = $'
+.code
+main proc 
+	mov ax, @data
+	mov ds, ax
+;-----------------------------
+	finit
+	fld x
+	fld y
+	faddp
+	fcom seven
+	WAIT
+	FSTSW te
+	mov ax,te
+	sahf
+	ja met1 ; >7
+
+	
+	fld x
+	fld y
+	faddp
+	fcom mten
+	WAIT
+	FSTSW te
+	mov ax,te
+	sahf
+	jb met2
+
+	fld x
+	fld three 
+	fmulp
+	fmulp
+	fstp f
+	fld y
+	fld two
+	fmulp
+	fmulp
+	fstp tmp
+	fld f
+	fld tmp
+	fsubp
+	fstp f
+	fld f
+	fld one
+	faddp
+	jmp lstnd
+met1:
+	fld x 
+	fld y
+	fld three
+	fmulp
+	fmulp
+	fld one
+	fsubp
+	fld y
+	faddp
+	jmp lstnd
+met2:
+	fld x
+	fld y
+	faddp
+	fstp f
+
+	fld x
+	fmulp
+	fld four
+	faddp
+	fstp tmp
+
+	fld f
+	fld tmp
+	fdivp
+	jmp lstnd
+;-----------------------------
+lstnd:
+	mov ax, 4C00H
+	int 21H
+main endp
+end main
