@@ -1,0 +1,83 @@
+Составить и отладить программу на языке ассемблера для вычисления значения функции:
+ 
+	Написать 5 вариантов программы:
+использование ассемблерных вставок в языке Pascal.
+Программу протестировать по всем условиям.
+
+Program Alex;
+
+  function PH1(x,y: integer):integer; assembler;
+   asm
+  mov al,byte[y]
+  mov bl,byte[x]
+  add al,bl
+  mov cl,al
+
+  mov al,byte[x]
+  imul x
+  mov bl,al
+  mov al,byte[y]
+  imul y
+  add al,bl
+  mov dl,1
+  add al,dl
+  mov bl,al
+
+  mov al,cl
+  cbw
+  idiv bl
+  cbw
+  end;
+
+  function PH2(x,y: integer):integer; assembler;
+  asm
+  mov al,byte[x]
+  mov bl,byte[y]
+  imul bl
+  mov cl,al
+
+  mov al,byte[x]
+  imul x
+  mov bl,al
+  mov al,byte[y]
+  imul y
+  add al,bl
+  mov dl,1
+  add al,dl
+  mov bl,al
+
+  mov al,cl
+  cbw
+  idiv bl
+  cbw
+  end;
+
+  function PH3(x,y: integer):integer; assembler;
+  asm
+  mov al,byte[x]
+  imul x
+  mov bl,al
+  mov al, byte[y]
+  imul y
+  mov cl,2
+  imul cl
+  add al,bl
+  end;
+
+  var
+x, y, f:integer;
+begin
+write('Vvedite X=');
+readln(x);
+write('Vvedite Y=');
+readln(y);
+if (x+y>12) then
+   f:=PH1(x,y)
+ else
+if (x+y<-4) then
+   f:=PH2(x,y)
+ else
+   f:=PH3(x,y);
+
+writeln(f);
+end.
