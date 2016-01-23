@@ -1,0 +1,52 @@
+Составить и отладить программу на языке ассемблера для вычисления заданного арифметического выражения:
+ 	Написать два варианта программы, использующие:
+работу со словами с использованием сокращенных директив сегментации
+
+masm
+model small
+extrn disp:near
+.data
+	a dw 4 
+	b dw 1 
+	y dw ? 
+	mes db 13,10,'Konec progi$' 
+.stack
+	db 30 dup (0) 
+.code 
+	osn proc near 
+	
+	mov ax,@data  
+	mov ds,ax 
+
+
+        mov ax,a
+	mov bx,2
+	imul bx
+	mov cx,ax
+	mov ax,b
+	mov bx,3
+	imul bx
+	add ax,cx
+	mov bx,4
+	sub ax,bx
+	mov cx,ax
+
+	mov ax,5
+	mov bx,a
+	sub ax,bx
+
+	mov bx,ax
+	mov ax,cx
+	cwd
+	idiv bx
+	cwd
+
+
+	call disp
+	lea dx,mes
+	mov ax,0900H 
+	int 21H 
+  mov ax,4C00H 
+  int 21H 
+  osn endp
+end osn
