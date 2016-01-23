@@ -1,0 +1,102 @@
+Составить и отладить программу на языке ассемблера для вычисления значения функции:
+ 
+	Написать 5 вариантов программы:
+•	без использования процедур;
+Программу протестировать по всем условиям.
+
+masm
+model small
+;Тесты
+; 1 ветка
+; x = 8 
+; y = 7
+; Результат = 0
+; 2 ветка
+; x = -6
+; y = 1
+; Результат = 0
+; 3 ветка
+; x = 1 
+; y = 1
+; Результат = 3
+.data
+	x db 8
+	y db 7
+	f db ?
+mes db 'End.....$'
+.stack
+	db 30 dup (0)
+.code
+	osn proc near
+	mov ax, @data
+	mov ds, ax
+;-----------------------------
+	mov al,x
+	mov bl,y
+	add al,bl
+	cmp al, 12
+	jg f1
+	cmp al, -4
+	jl f2	
+	mov al, x
+	imul x
+	mov bl,al
+	mov al, y
+	imul y
+	mov cl,2
+	imul cl
+	add al,bl
+	jmp lstnd
+        
+
+f1:
+	mov al, y
+	mov bl, x
+	add al, bl
+	mov cl,al
+	
+	mov al, x
+	imul x
+	mov bl,al
+	mov al, y
+	imul y
+	add al, bl
+	mov dl, 1
+	add al,dl
+	mov bl,al
+
+	mov al,cl
+	cbw
+	idiv bl
+	cbw
+	jmp lstnd
+
+	
+f2:	mov al,x
+	mov bl,y
+	imul bl
+	
+	mov al, x
+	imul x
+	mov bl,al
+	mov al, y
+	imul y
+	add al, bl
+	mov dl, 1
+	add al,dl
+	mov bl,al
+
+	mov al,cl
+	cbw
+	idiv bl
+	cbw
+	jmp lstnd
+;-----------------------------
+lstnd:
+	lea dx,mes
+	mov ax,0900H
+	int 21H
+	mov ax,4C00H
+	int 21H
+	osn endp
+end osn
