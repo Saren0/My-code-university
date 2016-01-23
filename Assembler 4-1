@@ -1,0 +1,100 @@
+Составить и отладить программу на языке ассемблера для вычисления значения функции, используя регистры сопроцессора. Написать 2 варианта программы:
+•	с использованием целочисленных команд сопроцессора;
+Программу протестировать по всем условиям.
+
+
+masm
+model use16 small
+extrn vvod:near,disp:near
+.stack 100h
+;Тесты
+; 1 ветка
+; x = 4 
+; y = 4
+; Результат = 51
+; 2 ветка
+; x = -12 
+; y = 1
+; Результат = 0
+; 3 ветка
+; x = 1
+; y = 1
+; Результат = 2
+.data
+	x dw 1
+	y dw 1
+	f dw ?
+	four dw 4
+	three dw 3
+	two dw 2
+	one dw 1
+	xy dw ?
+	tmp dw ?
+	mes db 'F = $'
+.code
+main proc 
+	mov ax, @data
+	mov ds, ax
+;-----------------------------
+	finit
+	fild x
+	fiadd y
+	fistp xy
+	mov ax, xy
+	cmp ax, 7
+	jg met1
+	cmp ax, -10
+	jl met2
+	
+	fild x
+	fimul x
+	fimul three
+	fistp f
+	fild y 
+	fimul two
+	fimul y
+	fistp tmp
+	fild f
+	fisub tmp
+	fiadd one
+	fistp f 
+	jmp lstnd
+
+	
+met1:	
+	fild x
+	fimul y
+	fimul three
+	fisub one
+	fiadd y
+	fistp f
+	jmp lstnd
+
+	
+met2:	
+	fild x
+	fiadd y
+	fistp f
+
+	fild x
+	fimul x
+	fiadd four
+	fistp tmp
+
+	fild f
+	fidiv tmp
+	fistp f
+	jmp lstnd	
+
+;-----------------------------
+lstnd:
+	fild f
+	lea dx, mes
+	mov ax, 0900H
+	int 21H
+	mov ax, f
+	call disp
+	mov ax, 4C00H
+	int 21H
+main endp
+end main
