@@ -1,0 +1,51 @@
+Составить и отладить программу на языке ассемблера для вычисления заданного арифметического выражения:
+	Написать два варианта программы, использующие:
+	работу с байтами с использование полных директив сегментации;
+	
+extrn disp:near
+Dseg segment para public 'data' 
+	a db 2 
+	b db 1 
+	y db ? 
+	mes db 13,10,'Konec progi$' 
+Dseg ends 
+Sseg segment para stack 'stack' 
+	db 30 dup (0) 
+Sseg ends 
+Cseg segment para public 'code' 
+	osn proc near 
+	Assume cs:cseg,ds:dseg,ss:sseg 
+	mov ax,dseg  
+	mov ds,ax
+ 
+	mov al,a
+	mov bl,2
+	imul bl
+	mov cl,al
+	mov al,b
+	mov bl,3
+	imul bl
+	add al,cl
+	mov bl,4
+	sub al,bl
+	mov cl,al
+
+	mov al,5
+	mov bl,a
+	sub al,bl
+
+	mov bl,al
+	mov al,cl
+	cbw
+	idiv bl
+	cbw
+
+	call disp
+	lea dx,mes
+	mov ax,0900H 
+	int 21H 
+   	mov ax,4C00H 
+   	int 21H 
+   	osn endp
+Cseg ends
+end osn
