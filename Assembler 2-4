@@ -1,0 +1,216 @@
+Составить и отладить программу на языке ассемблера для вычисления значения функции:
+ 
+	Написать 5 вариантов программы:
+организовать ввод исходных данных и вывод результатов;
+Программу протестировать по всем условиям.
+
+masm
+model small
+extrn disp:near, VVOD:near
+;Тесты
+; 1 ветка
+; x = 8 
+; y = 7
+; Результат = 0
+; 2 ветка
+; x = -6
+; y = 1
+; Результат = 0
+; 3 ветка
+; x = 1 
+; y = 1
+; Результат = 3
+.data
+	x db ?
+	y db ?
+	f db ?
+mes db ' END...$'
+mes2 db 'Vvedite X--> $'
+mes3 db 'Vvedite Y--> $'
+.stack
+	db 30 dup (0)
+.code
+	osn proc near
+	mov ax, @data
+	mov ds, ax
+	lea dx, mes2
+	mov ah, 9
+	int 21h
+	call vvod
+	mov x, bl
+	lea dx, mes3
+	mov ah, 9
+	int 21h
+	call vvod
+	mov y, bl
+;-----------------------------
+	mov al,x
+	mov bl,y
+	add al,bl
+	cmp al, 12
+	jg f1
+	cmp al, -4
+	jl f2	
+	mov al, x
+	imul x
+	mov bl,al
+	mov al, y
+	imul y
+	mov cl,2
+	imul cl
+	add al,bl
+	jmp lstnd
+        
+
+f1:
+	mov al, y
+	mov bl, x
+	add al, bl
+	mov cl,al
+	
+	mov al, x
+	imul x
+	mov bl,al
+	mov al, y
+	imul y
+	add al, bl
+	mov dl, 1
+	add al,dl
+	mov bl,al
+
+	mov al,cl
+	cbw
+	idiv bl
+	cbw
+	jmp lstnd
+
+	
+f2:	mov al,x
+	mov bl,y
+	imul bl
+	
+	mov al, x
+	imul x
+	mov bl,al
+	mov al, y
+	imul y
+	add al, bl
+	mov dl, 1
+	add al,dl
+	mov bl,al
+
+	mov al,cl
+	cbw
+	idiv bl
+	cbw
+	jmp lstnd
+;-----------------------------
+lstnd:
+    mov f, al
+    cbw
+    call disp
+	lea dx,mes
+	mov ax,0900H
+	int 21H
+	mov ax,4C00H
+	int 21H
+	osn endp
+end osn
+
+masm
+model small
+public vvod
+.data
+mes   db 'ЏҐаҐЇ®«­Ґ­ЁҐ'
+mes1  db '',10,13,'$'
+mes2  db 'ЋиЁЎЄ  ўў®¤ ',10,13,'$'
+.code
+vvod  proc near
+      mov ax,@data
+      mov ds,ax
+      push ax
+      push cx
+      push dx
+      push si
+      push di
+      push bp
+      maska=00001111b
+      mov bx,0
+      mov cx,10
+      mov si,0
+      mov di,1
+      mov bp,1
+met4: mov ax,0800h
+      int 21h
+      cmp al,0dh
+      je met1
+      cmp si,0
+      jne met2
+      cmp al,2dh
+      jne met3
+      mov dl,2dh
+      mov di,0
+met6: mov ax,0200h
+      int 21h
+      mov si,1
+      mov bp,0
+      jmp met4
+met3: cmp al,2bh
+      jne met2
+      mov dl,2bh
+      jmp met6
+met2: cmp al,30h
+      jae met5
+met7: mov dl,07h
+      mov ax,0200h
+      int 21h
+      jmp met4
+met5: cmp al,39h
+      ja met7
+      mov dl,al
+      mov ax,0200h
+      int 21h
+      mov bp,1
+      mov si,1
+      and al,maska
+      cbw
+      push ax
+      mov ax,bx
+      cwd
+      imul cx
+      jo met11
+      mov bx,ax
+      pop ax
+      cmp di,1
+      je met9
+      neg ax
+met9: add bx,ax
+      jno met4
+met11:lea dx,mes1
+      mov ax,0900h
+      int 21h
+      lea dx,mes
+      mov ax,0900h
+      int 21h
+      jmp stop
+met1: cmp bp,1
+      je met10
+      lea dx,mes1
+      mov ax,0900h
+      int 21h
+      lea dx,mes2
+      mov ax,0900h
+      int 21h
+      jmp stop
+met10:lea dx,mes1
+      mov ax,0900h
+      int 21h
+stop: pop bp
+      pop di
+      pop si
+      pop dx
+      pop cx
+      pop ax
+      ret
+vvod  endp
+      end
